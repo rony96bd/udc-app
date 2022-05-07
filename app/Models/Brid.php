@@ -10,7 +10,7 @@ class Brid extends Model
     use HasFactory;
 
     protected $fillable = [
-        'date',
+        'user_id',
         'brid',
         'status',
         'id_type',

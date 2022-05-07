@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\pages\HomeController;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,11 +18,30 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return Redirect::route('login');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::get('users/{id}', function ($id) {
+    $user = User::where('id', $id)->get();
+
+    return response()->json($user);
+});
+
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
+
+    Route::post('/add', [HomeController::class, 'addData'])->name('addBr');
+    Route::post('/update', [HomeController::class, 'updateData'])->name('updBr');
+
+    Route::get('/bdids', function () {
+        $user = Auth()->user();
+
+        $brIds = App\Models\Brid::where('user_id', $user->id)->get();
+
+        return response()->json($brIds);
+    });
+});
+
+
 
 require __DIR__ . '/auth.php';

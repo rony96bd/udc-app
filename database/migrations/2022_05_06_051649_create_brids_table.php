@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('brids', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
             $table->integer('brid');
             $table->string('status')->nullable();
             $table->string('id_type')->nullable();
