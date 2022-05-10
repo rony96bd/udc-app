@@ -35,6 +35,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/payinfo', [PayController::class, 'index'])->name('payinfo');
     Route::post('/add', [HomeController::class, 'addData'])->name('addBr');
     Route::post('/update', [HomeController::class, 'updateData'])->name('updBr');
+    Route::delete('/delete_br/{id}', [HomeController::class, 'deleteData'])->name('deleteBr');
 
 });
 
