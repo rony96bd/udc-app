@@ -102,7 +102,16 @@
 
                 <!-- Topbar Navbar -->
                 <ul class="navbar-nav ml-auto">
-
+                    <!-- Balance Show -->
+                    <li class="nav-item dropdown no-arrow mx-1">
+                        <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
+                           data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-money-bill fa-fw"></i>
+                            <!-- Counter - Alerts -->
+                            <span class="badge badge-success">{{ $balance }}</span>
+                        </a>
+                    </li>
                     <!-- Nav Item - Alerts -->
                     <li class="nav-item dropdown no-arrow mx-1">
                         <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
