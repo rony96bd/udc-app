@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\pages\HomeController;
+use App\Http\Controllers\pages\UserController;
+use App\Http\Controllers\pages\PayController;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -29,17 +31,11 @@ Route::get('users/{id}', function ($id) {
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
-
+    Route::get('/alluser', [UserController::class, 'index'])->name('allUser');
+    Route::get('/payinfo', [PayController::class, 'index'])->name('payinfo');
     Route::post('/add', [HomeController::class, 'addData'])->name('addBr');
     Route::post('/update', [HomeController::class, 'updateData'])->name('updBr');
 
-    Route::get('/bdids', function () {
-        $user = Auth()->user();
-
-        $brIds = App\Models\Brid::where('user_id', $user->id)->get();
-
-        return response()->json($brIds);
-    });
 });
 
 
