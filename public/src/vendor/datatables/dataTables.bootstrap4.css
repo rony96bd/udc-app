@@ -6,13 +6,11 @@ table.dataTable {
   max-width: none !important;
   border-collapse: separate !important;
   border-spacing: 0;
-    vertical-align: middle;
 }
 table.dataTable td,
 table.dataTable th {
   -webkit-box-sizing: content-box;
   box-sizing: content-box;
-  vertical-align: middle;
 }
 table.dataTable td.dataTables_empty,
 table.dataTable th.dataTables_empty {
