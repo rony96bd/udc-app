@@ -59,7 +59,7 @@
                             <th>BR Applicatin ID</th>
                             <th>Status</th>
                             <th>ID Type</th>
-                            <th width="12px">Rate</th>
+                            <th style="width: 56px;">Rate</th>
                             <th>Message</th>
                             @if ($user->is_admin == '1')
                                 <th>Requested</th>
@@ -128,12 +128,12 @@
                                         @endif
                                     </td>
 
-                                    <td style="vertical-align: middle;" align="center">
+                                    <td style="vertical-align: middle; width: 56px;" align="center">
                                         @if ($user->is_admin == '0')
                                         {{ $brId->rate }}
                                         @endif
                                         @if ($user->is_admin == '1')
-                                            <input class="form-control" name="rate" type="text"
+                                            <input class="form-control text-center" name="rate" type="text"
                                                    placeholder="{{ $brId->rate }}"
                                                    value="{{ $brId->rate }}"/>
                                         @endif
