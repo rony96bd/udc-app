@@ -58,6 +58,7 @@
 <script src="{{ url('public/src/js/demo/chart-area-demo.js') }}"></script>
 <script src="{{ url('public/src/js/demo/chart-pie-demo.js') }}"></script>
 <script src="{{ url('public/src/js/demo/datatables-demo.js') }}"></script>
+<script src="https://kit.fontawesome.com/88197b63d0.js" crossorigin="anonymous"></script>
 <script>
     function copyToClipboard(text) {
         if (window.clipboardData && window.clipboardData.setData) {
