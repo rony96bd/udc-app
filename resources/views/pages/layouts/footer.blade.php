@@ -74,6 +74,11 @@
         clickedBtn.style.color = 'white';
         clickedBtn.style.background = 'green';
     }
+    $(document).ready(function () {
+        $('#example').DataTable({
+            order: [[0, 'desc'], [2, 'desc']],
+        });
+    });
 </script>
 </body>
 

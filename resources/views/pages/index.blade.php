@@ -52,7 +52,7 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable">
+                    <table class="table table-bordered" id="example">
                         <thead>
                         <tr>
                             <th>Date</th>
@@ -70,7 +70,7 @@
                         <tbody>
                         @foreach ($brIds as $brId)
                             <tr>
-                                <td style="vertical-align: middle;">{{ date('d-m-Y', strtotime($brId->created_at)) }}</td>
+                                <td style="vertical-align: middle;">{{ date('d-m-Y H:i:s', strtotime($brId->created_at)) }}</td>
                                 <td style="vertical-align: middle;">
                                     <span id="item-desc-{{ $brId->brid }}">{{ $brId->brid }}</span>
                                     <button class="badge badge-counter btn btn-primary"
@@ -158,7 +158,7 @@
                                         <td style="vertical-align: middle;">
                                             <div class="input-group"><button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-save"></i>
                                             </button>
-
+                                            </div>
                                 </form>
                                 <div class="input-group-append pl-1"><form action="{{ route('deleteBr', $brId->id) }}" method="post">
                                     @csrf
