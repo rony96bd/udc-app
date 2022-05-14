@@ -5,11 +5,13 @@ namespace App\Http\Controllers\pages;
 use App\Http\Controllers\Controller;
 use App\Listeners\LogListener;
 use App\Models\Log;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Brid;
 use App\Models\Payment;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Hash;
 
 class HomeController extends Controller
 {
@@ -52,14 +54,14 @@ class HomeController extends Controller
     function updateData(Request $req)
     {
         $brids = Brid::findOrFail($req->id);
-        $brids_old =$brids;
+        $brids_old = $brids;
         $brids->status = $req->status;
         $brids->id_type = $req->id_type;
         $brids->rate = $req->rate;
         $brids->message = $req->message;
         $brids->save();
 
-        if ($brids){
+        if ($brids) {
             $log = new Log();
             $log->user_id = Auth()->user()->id;
             $log->action = "Update";
@@ -80,5 +82,37 @@ class HomeController extends Controller
         $brids = Brid::findOrFail($req->id);
         $brids->delete();
         return Redirect::route('dashboard');
+    }
+
+    public function changePassword()
+    {
+        $user = Auth()->user();
+
+        $total_payable = Brid::where('user_id', $user->id)
+            ->where('status', 'Approved')
+            ->sum('rate');
+        $paid = Payment::where('user_id', $user->id)
+            ->where('status', 'Approved')
+            ->sum('taka');
+        $balance = $total_payable - $paid;
+        return view('pages.change-password', compact(['balance', 'user']));
+    }
+
+    public function updatePassword(Request $request)
+    {
+
+        $request->validate([
+            'old_password' => 'required',
+        ]);
+
+        if (!Hash::check($request->old_password, auth()->user()->password)) {
+            return back()->with("error", "Old password Does not match");
+        }
+
+        User::whereId(auth()->user()->id)->update([
+            'password' => Hash::make($request->new_password)
+        ]);
+
+        return back()->with("status", "Password Changed Successfully!");
     }
 }
