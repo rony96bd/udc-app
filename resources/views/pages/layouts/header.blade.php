@@ -89,6 +89,19 @@
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
 
+        @php
+            $user = Auth()->user();
+
+            $total_payable = App\Models\Brid::where('user_id', $user->id)
+                ->where('status', 'Approved')
+                ->sum('rate');
+            $paid = App\Models\Payment::where('user_id', $user->id)
+                ->where('status', 'Approved')
+                ->sum('taka');
+
+            $balance = $total_payable - $paid;
+        @endphp
+
         <!-- Main Content -->
         <div id="content">
 

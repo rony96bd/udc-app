@@ -19,15 +19,6 @@ class HomeController extends Controller
     {
         $user = Auth()->user();
 
-        $total_payable = Brid::where('user_id', $user->id)
-            ->where('status', 'Approved')
-            ->sum('rate');
-        $paid = Payment::where('user_id', $user->id)
-            ->where('status', 'Approved')
-            ->sum('taka');
-
-        $balance = $total_payable - $paid;
-
         if ($user->is_admin == 1) {
             $brIds = Brid::join('users', 'users.id', '=', 'brids.user_id')
                 ->get(['brids.*', 'users.name', 'users.email']);
@@ -35,7 +26,7 @@ class HomeController extends Controller
             $brIds = Brid::where('user_id', $user->id)->get();
         }
 
-        return view('pages.index', compact(['brIds', 'user', 'balance']));
+        return view('pages.index', compact(['brIds', 'user']));
     }
 
     function addData(Request $req)
@@ -86,16 +77,7 @@ class HomeController extends Controller
 
     public function changePassword()
     {
-        $user = Auth()->user();
-
-        $total_payable = Brid::where('user_id', $user->id)
-            ->where('status', 'Approved')
-            ->sum('rate');
-        $paid = Payment::where('user_id', $user->id)
-            ->where('status', 'Approved')
-            ->sum('taka');
-        $balance = $total_payable - $paid;
-        return view('pages.change-password', compact(['balance', 'user']));
+        return view('pages.change-password');
     }
 
     public function updatePassword(Request $request)
