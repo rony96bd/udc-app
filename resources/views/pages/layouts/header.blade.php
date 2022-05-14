@@ -43,9 +43,12 @@
 
         <!-- Divider -->
         <hr class="sidebar-divider my-0">
+        @php
+            $menustatus = Route::currentRouteName();
+        @endphp
 
-        <!-- Nav Item - Dashboard -->
-        <li class="nav-item active">
+            <!-- Nav Item - Dashboard -->
+        <li class="nav-item @php if($menustatus=='dashboard'){echo 'active'; }  @endphp">
             <a class="nav-link" href="{{ URL::to('/') }}">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>HomePage</span></a>
@@ -55,18 +58,18 @@
         <hr class="sidebar-divider">
 
         <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item">
+        <li class="nav-item @php if($menustatus=='allUser'){echo 'active'; }  @endphp">
             <a class="nav-link" href="{{ URL::to('/alluser') }}">
-                <i class="fas fa-fw fa-cog"></i>
+                <i class="fas fa-user"></i>
                 <span>Users</span>
             </a>
 
         </li>
 
         <!-- Nav Item - Utilities Collapse Menu -->
-        <li class="nav-item">
+        <li class="nav-item @php if($menustatus=='payinfo'){echo 'active'; }  @endphp">
             <a class="nav-link" href="{{ URL::to('/payinfo') }}">
-                <i class="fas fa-fw fa-wrench"></i>
+                <i class="fas fa-money-bill-wave"></i>
                 <span>Payment Info</span>
             </a>
             <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
@@ -102,7 +105,7 @@
             $balance = $total_payable - $paid;
         @endphp
 
-        <!-- Main Content -->
+            <!-- Main Content -->
         <div id="content">
 
             <!-- Topbar -->
