@@ -97,7 +97,7 @@
                                 <form action="{{ Route('updBr') }}" method="POST">
                                     @csrf
                                     <input type="hidden" name="id" value="{{ $brId->id }}"/>
-                                    <td style="vertical-align: middle;" align="center" style="color: {{ $txtcol }};">
+                                    <td style="vertical-align: middle; color: {{ $txtcol }};" align="center">
                                         @if ($user->is_admin == '0')
                                         {{ $brId->status }}
                                         @endif
