@@ -99,11 +99,12 @@
                                     <input type="hidden" name="id" value="{{ $brId->id }}"/>
                                     <td style="vertical-align: middle; color: {{ $txtcol }};" align="center">
                                         @if ($user->is_admin == '0')
-                                        {{ $brId->status }}
+                                            {{ $brId->status }}
                                         @endif
 
                                         @if ($user->is_admin == '1')
-                                            <select style="color: {{ $txtcol }};" name="status" onchange='if(this.value != 0) { this.form.submit(); }'
+                                            <select style="color: {{ $txtcol }};" name="status"
+                                                    onchange='if(this.value != 0) { this.form.submit(); }'
                                                     class="form-select center">
                                                 <option>{{ $brId->status }}</option>
                                                 <option style="color: rgb(9, 214, 9);">Approved</option>
@@ -115,7 +116,7 @@
 
                                     <td style="vertical-align: middle;" align="center">
                                         @if ($user->is_admin == '0')
-                                        {{ $brId->id_type }}
+                                            {{ $brId->id_type }}
                                         @endif
                                         @if ($user->is_admin == '1')
                                             <select name="id_type"
@@ -130,7 +131,7 @@
 
                                     <td style="vertical-align: middle; width: 56px;" align="center">
                                         @if ($user->is_admin == '0')
-                                        {{ $brId->rate }}
+                                            {{ $brId->rate }}
                                         @endif
                                         @if ($user->is_admin == '1')
                                             <input class="form-control text-center" name="rate" type="text"
@@ -141,7 +142,7 @@
 
                                     <td style="vertical-align: middle;" align="center">
                                         @if ($user->is_admin == '0')
-                                        {{ $brId->message }}
+                                            {{ $brId->message }}
                                         @endif
                                         @if ($user->is_admin == '1')
                                             <textarea name="message" class="form-control" rows="1"
@@ -152,19 +153,25 @@
 
                                     @if ($user->is_admin == '1')
                                         <td style="vertical-align: middle;">
-{{--                                            <span>{{ $brId->name }}</span><br>--}}
+                                            {{--                                            <span>{{ $brId->name }}</span><br>--}}
                                             <span>{{ $brId->email }}</span>
                                         </td>
                                         <td style="vertical-align: middle;">
-                                            <div class="input-group"><button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-save"></i>
-                                            </button>
-                                            </div>
+                                            <div class="d-flex justify-content-between">
+                                                <span> <button type="submit" class="btn btn-primary btn-sm"><i
+                                                            class="fas fa-save"></i></button> </span>
+
+
+
                                 </form>
-                                <div class="input-group-append pl-1"><form action="{{ route('deleteBr', $brId->id) }}" method="post">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
-                                </form></div>
+
+                                    <form action="{{ route('deleteBr', $brId->id) }}" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <span> <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i>
+                                        </button></span>
+                                    </form>
+                </div>
                                 </td>
                                 @endif
                             </tr>
