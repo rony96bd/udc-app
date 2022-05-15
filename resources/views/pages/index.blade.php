@@ -146,8 +146,7 @@
                                         @endif
                                         @if ($user->is_admin == '1')
                                             <textarea name="message" class="form-control" rows="1"
-                                                      placeholder="{{ $brId->message }}"
-                                                      value="{{ $brId->message }}"></textarea>
+                                                      placeholder="{{ $brId->message }}">{{ $brId->message }}</textarea>
                                         @endif
                                     </td>
 
