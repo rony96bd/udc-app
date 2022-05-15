@@ -76,7 +76,7 @@
     }
     $(document).ready(function () {
         $('#example').DataTable({
-            order: [[0, 'desc'], [2, 'desc']],
+            order: [[2, 'desc'], [0, 'desc']],
         });
     });
 </script>
