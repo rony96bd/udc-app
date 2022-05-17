@@ -45,8 +45,9 @@
                 </div>
 
             </div>
+            @endif
         </div>
-        @endif
+
         <!-- Page Heading -->
 
         <!-- DataTales Example -->
@@ -165,25 +166,25 @@
                                                             class="fas fa-save"></i></button> </span>
 
 
-
                                 </form>
 
-                                    <form action="{{ route('deleteBr', $brId->id) }}" method="post">
-                                        @csrf
-                                        @method('DELETE')
-                                        <span> <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i>
+                                <form action="{{ route('deleteBr', $brId->id) }}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <span> <button type="submit" class="btn btn-danger btn-sm"><i
+                                                class="fas fa-trash"></i>
                                         </button></span>
-                                    </form>
-                </div>
-                                </td>
-                                @endif
-                            </tr>
-                        @endforeach
-                        </tbody>
+                                </form>
+                            </div>
+                                    </td>
+                               @endif
+                                    </tr>
+                               @endforeach
+                            </tbody>
                     </table>
-                </div>
             </div>
         </div>
+    </div>
     </div>
     <!-- /.container-fluid -->
     </div>
