@@ -8,17 +8,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 Route::get('/', function () {
     return Redirect::route('login');
 });
@@ -38,8 +27,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::delete('/delete_br/{id}', [HomeController::class, 'deleteData'])->name('deleteBr');
     Route::get('/change-password', [HomeController::class, 'changePassword'])->name('change-password');
     Route::post('/change-password', [HomeController::class, 'updatePassword'])->name('update-password');
-
-
+    Route::get('/add-payment', [PayController::class, 'paymentShow'])->name('payment-show');
+    Route::post('/add-payment', [PayController::class, 'addPayment'])->name('add-payment');
 });
 
 

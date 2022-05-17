@@ -5,6 +5,8 @@ namespace App\Http\Controllers\pages;
 use App\Http\Controllers\Controller;
 use App\Models\Brid;
 use App\Models\Payment;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class PayController extends Controller
 {
@@ -29,5 +31,22 @@ class PayController extends Controller
         }
 
         return view('pages.payinfo', compact(['brIds', 'user', 'balance']));
+    }
+
+    public function addPayment(Request $reqp)
+    {
+        $user = Auth()->user();
+        $pay = Payment::create([
+            'user_id' => $user->id,
+            'taka' => $reqp->taka,
+            'transaction_id' => $reqp->trid,
+            'status' => "Pending",
+        ]);
+        return Redirect::route('payinfo');
+    }
+
+    public function paymentShow()
+    {
+        return view('pages.add-payment');
     }
 }
