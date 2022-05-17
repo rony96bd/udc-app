@@ -68,7 +68,7 @@
                                         @if ($user->is_admin == '1')
                                         <select style="color: {{ $txtcol }}" name="paystatus" onchange='if(this.value != 0) { this.form.submit(); }'
                                                 class="form-select center">
-                                            <option></option>
+                                            <option>{{ $payment->status }}</option>
                                             <option style="color: rgb(9, 214, 9);">Approved</option>
                                             <option style="color: red;">Reject</option>
                                             <option style="color: blue;">Pending</option>
