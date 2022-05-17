@@ -2,6 +2,7 @@
 @section('main-container')
     <!-- Begin Page Content -->
     <div class="container-fluid">
+
         <!-- DataTales For Payment -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
@@ -38,19 +39,41 @@
                             }
                         @endphp
                         @foreach ($payments as $payment)
+                            @switch($payment->status)
+                                @case('Approved')
+                                @php $txtcol = 'rgb(9, 214, 9)' @endphp
+                                @break
+
+                                @case('Reject')
+                                @php $txtcol = 'red' @endphp
+                                @break
+
+                                @case('Pending')
+                                @php $txtcol = 'blue' @endphp
+                                @break
+
+                                @default
+                                @php $txtcol = 'black' @endphp
+                            @endswitch
                             <tr>
                                 <td>{{ $payment->created_at }}</td>
                                 <td>{{ $payment->name }} <br>({{ $payment->email }})</td>
                                 <td>{{ $payment->taka }}</td>
                                 <td>{{ $payment->transaction_id }}</td>
                                 <form>
-                                    <td><select name="paystatus" onchange='if(this.value != 0) { this.form.submit(); }'
+                                    <td style="vertical-align: middle; color: {{ $txtcol }};" align="center">
+                                        @if ($user->is_admin == '0')
+                                        {{ $payment->status }}
+                                        @endif
+                                        @if ($user->is_admin == '1')
+                                        <select style="color: {{ $txtcol }}" name="paystatus" onchange='if(this.value != 0) { this.form.submit(); }'
                                                 class="form-select center">
-                                            <option>{{ $payment->status }}</option>
+                                            <option></option>
                                             <option style="color: rgb(9, 214, 9);">Approved</option>
                                             <option style="color: red;">Reject</option>
                                             <option style="color: blue;">Pending</option>
                                         </select>
+                                        @endif
                                     </td>
                                     @if ($user->is_admin == '1')
                                         <td>

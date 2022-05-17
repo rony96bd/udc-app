@@ -2,6 +2,7 @@
 @section('main-container')
     <!-- Begin Page Content -->
     <div class="container">
+
         {{--                @if($user->is_admin ==0)--}}
         <div class="d-flex justify-content-center">
             <div class="col-xl-6 col-md-6 mb-4">
