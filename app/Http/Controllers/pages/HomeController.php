@@ -32,13 +32,14 @@ class HomeController extends Controller
     function addData(Request $req)
     {
         $user = Auth()->user();
-        $br = Brid::create([
+        Brid::firstOrCreate([
             'brid' => $req->brid,
             'status' => "Pending",
             'id_type' => "General",
             'rate' => $user->rate,
             'user_id' => $user->id,
         ]);
+
         return Redirect::route('dashboard');
     }
 
