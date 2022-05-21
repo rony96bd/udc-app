@@ -32,13 +32,13 @@
 <script src="{{ url('src/js/sb-admin-2.min.js') }}"></script>
 
 <!-- Page level plugins -->
-<script src="{{ url('src/vendor/chart.js/Chart.min.js') }}"></script>
+{{--<script src="{{ url('src/vendor/chart.js/Chart.min.js') }}"></script>--}}
 <script src="{{ url('src/vendor/datatables/jquery.dataTables.min.js') }}"></script>
 <script src="{{ url('src/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
 
 <!-- Page level custom scripts -->
-<script src="{{ url('src/js/demo/chart-area-demo.js') }}"></script>
-<script src="{{ url('src/js/demo/chart-pie-demo.js') }}"></script>
+{{--<script src="{{ url('src/js/demo/chart-area-demo.js') }}"></script>--}}
+{{--<script src="{{ url('src/js/demo/chart-pie-demo.js') }}"></script>--}}
 <script src="{{ url('src/js/demo/datatables-demo.js') }}"></script>
 <script src="https://kit.fontawesome.com/88197b63d0.js" crossorigin="anonymous"></script>
 <script>

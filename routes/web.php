@@ -29,6 +29,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/change-password', [HomeController::class, 'updatePassword'])->name('update-password');
     Route::get('/add-payment', [PayController::class, 'paymentShow'])->name('payment-show');
     Route::post('/add-payment', [PayController::class, 'addPayment'])->name('add-payment');
+    Route::post('/update-payment', [PayController::class, 'updatePayment'])->name('update-payment');
 });
 
 

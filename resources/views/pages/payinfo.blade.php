@@ -57,17 +57,18 @@
                             @endswitch
                             <tr>
                                 <td>{{ $payment->created_at }}</td>
-                                <td>{{ $payment->name }} <br>({{ $payment->email }})</td>
+                                <td>{{ $payment->name }} ({{ $payment->email }})</td>
                                 <td>{{ $payment->taka }}</td>
                                 <td>{{ $payment->transaction_id }}</td>
-                                <form>
-                                    <td style="vertical-align: middle; color: {{ $txtcol }};" align="center">
+                                <form action="{{ Route('update-payment') }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="id" value="{{ $payment->id }}"/>
+                                    <td style="color: {{ $txtcol }};" align="center">
                                         @if ($user->is_admin == '0')
                                         {{ $payment->status }}
                                         @endif
                                         @if ($user->is_admin == '1')
-                                        <select style="color: {{ $txtcol }}" name="paystatus" onchange='if(this.value != 0) { this.form.submit(); }'
-                                                class="form-select center">
+                                        <select style="color: {{ $txtcol }}" name="status" class="form-select center">
                                             <option>{{ $payment->status }}</option>
                                             <option style="color: rgb(9, 214, 9);">Approved</option>
                                             <option style="color: red;">Reject</option>

@@ -49,4 +49,12 @@ class PayController extends Controller
     {
         return view('pages.add-payment');
     }
+    function updatePayment (Request $reqp)
+    {
+        $pay = Payment::findOrFail($reqp->id);
+        $pay->status = $reqp->status;
+        $pay->save();
+
+        return Redirect::route('payinfo');
+    }
 }
