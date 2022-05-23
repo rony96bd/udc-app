@@ -32,15 +32,24 @@ class HomeController extends Controller
     function addData(Request $req)
     {
         $user = Auth()->user();
-        Brid::firstOrCreate([
-            'brid' => $req->brid,
-            'status' => "Pending",
-            'id_type' => "General",
-            'rate' => $user->rate,
-            'user_id' => $user->id,
-        ]);
+        $brid = Brid::where('brid', $req->brid)->first();
 
-        return Redirect::route('dashboard');
+        if ($brid) {
+            if ($brid->user_id == $user->id) {
+                return Redirect::back()->with('message', 'You already have this brid');
+            } else {
+                return Redirect::back()->with('message', 'This brid is already in use');
+            }
+        } else {
+            Brid::firstOrCreate([
+                'brid' => $req->brid,
+                'status' => "Pending",
+                'id_type' => "General",
+                'rate' => $user->rate,
+                'user_id' => $user->id,
+            ]);
+            return Redirect::back()->with('message', 'Brid added successfully');
+        }
     }
 
     function updateData(Request $req)

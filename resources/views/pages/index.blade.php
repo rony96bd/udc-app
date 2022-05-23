@@ -7,6 +7,14 @@
         <!-- Page Heading -->
         {{--        <div class="d-sm-flex align-items-center justify-content-between mb-6"></div>--}}
 
+        @if(session()->has('message'))
+            <div class="alert alert-success">
+                {{ session()->get('message') }}
+            </div>
+            //toastr
+
+        @endif
+
         <!-- Content Row -->
         <div class="row">
             <!-- ID Send Card -->
