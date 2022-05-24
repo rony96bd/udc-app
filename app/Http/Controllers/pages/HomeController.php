@@ -36,7 +36,7 @@ class HomeController extends Controller
 
         if ($brid) {
             if ($brid->user_id == $user->id) {
-                return Redirect::back()->with('message', 'You already have this brid');
+                return Redirect::back()->with('message', 'Duplicate BRID Found.');
             } else {
                 return Redirect::back()->with('message', 'This brid is already in use');
             }
