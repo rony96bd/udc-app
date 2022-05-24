@@ -5,7 +5,7 @@
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        {{--        <div class="d-sm-flex align-items-center justify-content-between mb-6"></div>--}}
+        {{--<div class="d-sm-flex align-items-center justify-content-between mb-6"></div>--}}
 
         @if(session()->has('message'))
             <div class="alert alert-success">
