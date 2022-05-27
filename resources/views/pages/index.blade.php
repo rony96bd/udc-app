@@ -83,7 +83,7 @@
                             <tr>
                                 <td style="vertical-align: middle;">{{ date('d-m-Y H:i:s', strtotime($brId->created_at)) }}</td>
                                 <td style="vertical-align: middle;">
-                                    <span id="item-desc-{{ $brId->brid }}">{{ $brId->brid }}</span>
+                                    <span id="{{ $brId->brid }}">{{ $brId->brid }}</span>
                                     <button class="badge badge-counter btn btn-primary"
                                             data-desc-ref="item-desc-{{ $brId->brid }}" type="button" value="Copy"
                                             id="btn" onclick="status(this)"><i class="fas fa-copy fa-sm"></i></button>
@@ -182,6 +182,12 @@
                         @endforeach
                         </tbody>
                     </table>
+                    <span><button type="button" class="btn btn-primary" data-toggle="modal" id="exampleApprove">
+                        Approve
+                    </button></span>
+                    <span><button type="button" class="btn btn-primary" data-toggle="modal" id="exampleReject">
+                        Reject
+                    </button></span>
                 </div>
             </div>
         </div>

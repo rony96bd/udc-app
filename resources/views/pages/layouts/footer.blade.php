@@ -78,6 +78,57 @@
         $('#example').DataTable({
             order: [[2, 'desc'], [0, 'desc']],
         });
+
+        // Activate the 'selected' class
+        // on clicking the rows
+        $('#example tbody').on('click', 'tr', function () {
+            $(this).toggleClass('selected');
+        });
+
+        //on click exampleApprove button
+        $('#exampleApprove').on('click', function () {
+            const ids = [];
+            $('#example tbody tr.selected').each(function () {
+                ids.push($(this).find('span').attr('id'));
+            });
+            $.ajax({
+                type: 'POST',
+                url: '{{ route('approveAll') }}',
+                data: {
+                    '_token': '{{ csrf_token() }}',
+                    'ids': ids,
+                },
+                success: function (data) {
+                    if (data.success) {
+                        location.reload();
+                    } else {
+                        location.reload();
+                    }
+                }
+            });
+        });
+        //on click exampleApprove button
+        $('#exampleReject').on('click', function () {
+            const ids = [];
+            $('#example tbody tr.selected').each(function () {
+                ids.push($(this).find('span').attr('id'));
+            });
+            $.ajax({
+                type: 'POST',
+                url: '{{ route('rejectAll') }}',
+                data: {
+                    '_token': '{{ csrf_token() }}',
+                    'ids': ids,
+                },
+                success: function (data) {
+                    if (data.success) {
+                        location.reload();
+                    } else {
+                        location.reload();
+                    }
+                }
+            });
+        });
     });
 </script>
 </body>

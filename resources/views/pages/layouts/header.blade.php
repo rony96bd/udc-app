@@ -23,6 +23,11 @@
     <!-- Custom styles for this template-->
     <link href="{{ url('src/css/sb-admin-2.min.css') }}" rel="stylesheet">
     <link href="{{ url('src/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+    <style>
+        .selected {
+            background-color: #e8e8e8;
+        }
+    </style>
 </head>
 
 <body id="page-top">

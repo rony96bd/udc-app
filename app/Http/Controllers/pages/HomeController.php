@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Listeners\LogListener;
 use App\Models\Log;
 use App\Models\User;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Models\Brid;
 use App\Models\Payment;
@@ -81,6 +82,18 @@ class HomeController extends Controller
     function deleteData(Request $req)
     {
         $brids = Brid::findOrFail($req->id);
+        $brids_old = $brids;
+        if ($brids) {
+            $log = new Log();
+            $log->user_id = Auth()->user()->id;
+            $log->action = "Delete";
+            $log->status = "Deleted";
+            $log->old_data = json_encode($brids_old);
+            $log->new_data = json_encode($brids);
+            $log->ip_address = $req->ip();
+            $log->user_agent = $req->header('User-Agent');
+            event(new LogListener($log));
+        }
         $brids->delete();
         return Redirect::route('dashboard');
     }
@@ -106,5 +119,71 @@ class HomeController extends Controller
         ]);
 
         return back()->with("status", "Password Changed Successfully!");
+    }
+
+    /**
+     * Approve all the ids
+     *
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function approveAll(Request $request)
+    {
+        //$brid = Brid::where('user_id', $user->id)->get();
+        $brids = $request->ids;
+        $ip_address = $request->ip();
+        $user_agent = $request->header('User-Agent');
+        //update array of ids
+        foreach ($brids as $brid) {
+            $brid = Brid::where('brid', $brid)->first();
+            $brid_old = $brid;
+            if ($brid) {
+                $log = new Log();
+                $log->user_id = Auth()->user()->id;
+                $log->action = "Admin Approve";
+                $log->status = "Approved";
+                $log->old_data = json_encode($brid_old);
+                $log->new_data = json_encode($brid);
+                $log->ip_address = $ip_address;
+                $log->user_agent = $user_agent;
+                event(new LogListener($log));
+            }
+            $brid->status = "Approved";
+            $brid->save();
+        }
+        return response()->json(['status' => 'success', 'message' => 'All ids approved successfully']);
+    }
+
+    /**
+     * Reject all the ids
+     *
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function rejectAll(Request $request)
+    {
+        //$brid = Brid::where('user_id', $user->id)->get();
+        $brids = $request->ids;
+        $ip_address = $request->ip();
+        $user_agent = $request->header('User-Agent');
+        //update array of ids
+        foreach ($brids as $brid) {
+            $brid = Brid::where('brid', $brid)->first();
+            $brid_old = $brid;
+            if ($brid) {
+                $log = new Log();
+                $log->user_id = Auth()->user()->id;
+                $log->action = "Admin Reject";
+                $log->status = "Rejected";
+                $log->old_data = json_encode($brid_old);
+                $log->new_data = json_encode($brid);
+                $log->ip_address = $ip_address;
+                $log->user_agent = $user_agent;
+                event(new LogListener($log));
+            }
+            $brid->status = "Rejected";
+            $brid->save();
+        }
+        return response()->json(['status' => 'success', 'message' => 'All ids rejected successfully']);
     }
 }
