@@ -174,14 +174,14 @@ class HomeController extends Controller
                 $log = new Log();
                 $log->user_id = Auth()->user()->id;
                 $log->action = "Admin Reject";
-                $log->status = "Rejected";
+                $log->status = "Reject";
                 $log->old_data = json_encode($brid_old);
                 $log->new_data = json_encode($brid);
                 $log->ip_address = $ip_address;
                 $log->user_agent = $user_agent;
                 event(new LogListener($log));
             }
-            $brid->status = "Rejected";
+            $brid->status = "Reject";
             $brid->save();
         }
         return response()->json(['status' => 'success', 'message' => 'All ids rejected successfully']);

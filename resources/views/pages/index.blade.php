@@ -59,7 +59,17 @@
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">ID's Result</h6>
+                <h4 style="float: left" class="m-0 font-weight-bold text-primary">Results</h4>
+                @if ($user->is_admin == '1')
+                    <div style="float: right">
+                <span><button type="button" class="btn btn-success" data-toggle="modal" id="exampleApprove">
+                        Approve
+                    </button></span>
+                <span><button type="button" class="btn btn-danger" data-toggle="modal" id="exampleReject">
+                        Reject
+                    </button></span>
+                </div>
+                @endif
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -131,7 +141,6 @@
                                         @endif
                                         @if ($user->is_admin == '1')
                                             <select name="id_type"
-                                                    onchange='if(this.value != 0) { this.form.submit(); }'
                                                     class="form-select center">
                                                 <option>{{ $brId->id_type }}</option>
                                                 <option>Regular</option>
@@ -156,8 +165,7 @@
                                             {{ $brId->message }}
                                         @endif
                                         @if ($user->is_admin == '1')
-                                            <textarea name="message" class="form-control" rows="1"
-                                                      placeholder="{{ $brId->message }}">{{ $brId->message }}</textarea>
+                                            <textarea name="message" class="form-control" rows="1">{{ $brId->message }}</textarea>
                                         @endif
                                     </td>
                                     @if ($user->is_admin == '1')
@@ -182,12 +190,6 @@
                         @endforeach
                         </tbody>
                     </table>
-                    <span><button type="button" class="btn btn-primary" data-toggle="modal" id="exampleApprove">
-                        Approve
-                    </button></span>
-                    <span><button type="button" class="btn btn-primary" data-toggle="modal" id="exampleReject">
-                        Reject
-                    </button></span>
                 </div>
             </div>
         </div>

@@ -32,6 +32,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/add-payment', [PayController::class, 'paymentShow'])->name('payment-show');
     Route::post('/add-payment', [PayController::class, 'addPayment'])->name('add-payment');
     Route::post('/update-payment', [PayController::class, 'updatePayment'])->name('update-payment');
+    Route::post('/update-status', [PayController::class, 'updateStatus'])->name('update-status');
 });
 
 
