@@ -95,7 +95,7 @@
                                 <td style="vertical-align: middle;">
                                     <span id="{{ $brId->brid }}">{{ $brId->brid }}</span>
                                     <button class="badge badge-counter btn btn-primary"
-                                            data-desc-ref="item-desc-{{ $brId->brid }}" type="button" value="Copy"
+                                            data-desc-ref="{{ $brId->brid }}" type="button" value="Copy"
                                             id="btn" onclick="status(this)"><i class="fas fa-copy fa-sm"></i></button>
                                 </td>
                                 @switch($brId->status)

@@ -65,9 +65,9 @@
     }
 
     function status(clickedBtn) {
-        var text = document.getElementById(clickedBtn.dataset.descRef).innerText;
+        var descRef = clickedBtn.dataset.descRef;
 
-        copyToClipboard(text);
+        copyToClipboard(descRef);
 
         clickedBtn.value = "Copied to clipboard";
         clickedBtn.disabled = true;
