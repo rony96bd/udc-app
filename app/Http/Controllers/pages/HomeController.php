@@ -127,7 +127,7 @@ class HomeController extends Controller
      * @param Request $request
      * @return JsonResponse
      */
-    public function approveAll(Request $request)
+    public function approveAll(Request $request): JsonResponse
     {
         //$brid = Brid::where('user_id', $user->id)->get();
         $brids = $request->ids;
@@ -160,7 +160,7 @@ class HomeController extends Controller
      * @param Request $request
      * @return JsonResponse
      */
-    public function rejectAll(Request $request)
+    public function rejectAll(Request $request): JsonResponse
     {
         //$brid = Brid::where('user_id', $user->id)->get();
         $brids = $request->ids;
@@ -185,5 +185,37 @@ class HomeController extends Controller
             $brid->save();
         }
         return response()->json(['status' => 'success', 'message' => 'All ids rejected successfully']);
+    }
+
+    /**
+     * Delete all the ids
+     *
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function deleteAll(Request $request): JsonResponse
+    {
+        //$brid = Brid::where('user_id', $user->id)->get();
+        $brids = $request->ids;
+        $ip_address = $request->ip();
+        $user_agent = $request->header('User-Agent');
+        //update array of ids
+        foreach ($brids as $brid) {
+            $brid = Brid::where('brid', $brid)->first();
+            $brid_old = $brid;
+            if ($brid) {
+                $log = new Log();
+                $log->user_id = Auth()->user()->id;
+                $log->action = "Admin Delete";
+                $log->status = "Delete";
+                $log->old_data = json_encode($brid_old);
+                $log->new_data = json_encode($brid);
+                $log->ip_address = $ip_address;
+                $log->user_agent = $user_agent;
+                event(new LogListener($log));
+            }
+            $brid->delete();
+        }
+        return response()->json(['status' => 'success', 'message' => 'All ids deleted successfully']);
     }
 }

@@ -25,6 +25,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/add', [HomeController::class, 'addData'])->name('addBr');
     Route::post('/reject_all', [HomeController::class, 'rejectAll'])->name('rejectAll');
     Route::post('/approve_all', [HomeController::class, 'approveAll'])->name('approveAll');
+    Route::post('/delete_all', [HomeController::class, 'deleteAll'])->name('deleteAll');
     Route::post('/update', [HomeController::class, 'updateData'])->name('updBr');
     Route::delete('/delete_br/{id}', [HomeController::class, 'deleteData'])->name('deleteBr');
     Route::get('/change-password', [HomeController::class, 'changePassword'])->name('change-password');

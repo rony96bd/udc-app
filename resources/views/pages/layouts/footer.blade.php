@@ -129,6 +129,28 @@
                 }
             });
         });
+        //on click exampleDelete button
+        $('#exampleDelete').on('click', function () {
+            const ids = [];
+            $('#example tbody tr.selected').each(function () {
+                ids.push($(this).find('span').attr('id'));
+            });
+            $.ajax({
+                type: 'POST',
+                url: '{{ route('deleteAll') }}',
+                data: {
+                    '_token': '{{ csrf_token() }}',
+                    'ids': ids,
+                },
+                success: function (data) {
+                    if (data.success) {
+                        location.reload();
+                    } else {
+                        location.reload();
+                    }
+                }
+            });
+        });
     });
 </script>
 </body>

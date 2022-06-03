@@ -65,10 +65,17 @@
                 <span><button type="button" class="btn btn-success" data-toggle="modal" id="exampleApprove">
                         Approve
                     </button></span>
-                <span><button type="button" class="btn btn-danger" data-toggle="modal" id="exampleReject">
+                        <span>
+                    <button type="button" class="btn btn-danger" data-toggle="modal" id="exampleReject">
                         Reject
-                    </button></span>
-                </div>
+                    </button>
+                </span>
+                        <span>
+                    <button type="button" class="btn btn-danger" data-toggle="modal" id="exampleDelete">
+                        Delete
+                    </button>
+                </span>
+                    </div>
                 @endif
             </div>
             <div class="card-body">
@@ -165,7 +172,8 @@
                                             {{ $brId->message }}
                                         @endif
                                         @if ($user->is_admin == '1')
-                                            <textarea name="message" class="form-control" rows="1">{{ $brId->message }}</textarea>
+                                            <textarea name="message" class="form-control"
+                                                      rows="1">{{ $brId->message }}</textarea>
                                         @endif
                                     </td>
                                     @if ($user->is_admin == '1')
