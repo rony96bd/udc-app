@@ -107,7 +107,14 @@
                 ->where('status', 'Approved')
                 ->sum('taka');
 
-            $balance = $total_payable - $paid;
+            $balance = $paid - $total_payable;
+
+            $total_payable_admin = App\Models\Brid::where('status', 'Approved')
+                ->sum('rate');
+            $paid_admin = App\Models\Payment::where('status', 'Approved')
+                ->sum('taka');
+
+            $balance_admin = $paid_admin - $total_payable_admin;
         @endphp
 
             <!-- Main Content -->
@@ -130,7 +137,13 @@
                            aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-money-bill fa-fw"></i>
                             <!-- Counter - Alerts -->
-                            <span class="badge badge-success">{{ $balance }}</span>
+                            <span class="badge badge-success">
+                                @if ($user->is_admin == '1')
+                                    {{ $balance_admin }}
+                                @else
+                                    {{ $balance }}
+                                @endif
+                            </span>
                         </a>
                     </li>
                     <!-- Nav Item - Alerts -->
