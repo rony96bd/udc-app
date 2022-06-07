@@ -15,12 +15,13 @@
 
     <!-- Custom fonts for this template-->
 
-    <link href="{{ url('src/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
+    {{-- <link href="{{ url('src/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css"> --}}
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
+    <link href="{{ url('src/css/v-ticker.css') }}" rel="stylesheet">
     <link href="{{ url('src/css/sb-admin-2.min.css') }}" rel="stylesheet">
     <link href="{{ url('src/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
     <style>
@@ -81,6 +82,24 @@
                  data-parent="#accordionSidebar">
             </div>
         </li>
+        <li class="nav-item @php if($menustatus=='payinfo'){echo 'active'; }  @endphp">
+            <a class="nav-link" href="{{ URL::to('/payinfo') }}">
+                <i class="fas fa-money-bill-wave"></i>
+                <span>Notice Board</span>
+            </a>
+            <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                 data-parent="#accordionSidebar">
+            </div>
+        </li>
+        <li class="nav-item @php if($menustatus=='payinfo'){echo 'active'; }  @endphp">
+            <a class="nav-link" href="{{ URL::to('/payinfo') }}">
+                <i class="fas handshake-angle"></i>
+                <span>Help</span>
+            </a>
+            <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                 data-parent="#accordionSidebar">
+            </div>
+        </li>
 
         <!-- Divider -->
         <hr class="sidebar-divider">
@@ -94,6 +113,7 @@
 
     </ul>
     <!-- End of Sidebar -->
+
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
 
@@ -122,7 +142,12 @@
 
             <!-- Topbar -->
             <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
+                <div class="hwrap"><div class="hmove">
+                    <div class="hitem">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+                    <div class="hitem">Aliquam consequat varius consequat.</div>
+                    <div class="hitem">Fusce dapibus turpis vel nisi malesuada sollicitudin.</div>
+                    <div class="hitem">Pellentesque auctor molestie orci ut blandit.</div>
+                  </div></div>
                 <!-- Sidebar Toggle (Topbar) -->
                 <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                     <i class="fa fa-bars"></i>
