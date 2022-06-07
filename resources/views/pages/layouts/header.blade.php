@@ -84,7 +84,7 @@
         </li>
         <li class="nav-item @php if($menustatus=='payinfo'){echo 'active'; }  @endphp">
             <a class="nav-link" href="{{ URL::to('/payinfo') }}">
-                <i class="fas fa-money-bill-wave"></i>
+                <i class="fa-solid fa-flag"></i>
                 <span>Notice Board</span>
             </a>
             <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
@@ -93,7 +93,7 @@
         </li>
         <li class="nav-item @php if($menustatus=='payinfo'){echo 'active'; }  @endphp">
             <a class="nav-link" href="{{ URL::to('/payinfo') }}">
-                <i class="fas handshake-angle"></i>
+                <i class="fas fa-heart"></i>
                 <span>Help</span>
             </a>
             <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
