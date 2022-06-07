@@ -12,6 +12,35 @@
                 {{ session()->get('message') }}
             </div>
         @endif
+        @php
+        $user = Auth()->user();
+
+        $total_payable = App\Models\Brid::where('user_id', $user->id)
+            ->where('status', 'Approved')
+            ->sum('rate');
+        $paid = App\Models\Payment::where('user_id', $user->id)
+            ->where('status', 'Approved')
+            ->sum('taka');
+
+        $balance = $total_payable - $paid;
+    @endphp
+                                {{ $balance }}
+                            @php
+                            $idfield = '';
+                                if ($balance <= '500'){
+                                    $idfield = '';
+                                } else {
+                                    $idfield = 'none';
+                                }
+                            @endphp
+                            @php
+                            $idfieldms = '';
+                                if ($balance <= '500'){
+                                    $idfieldms = '';
+                                } else {
+                                    $idfieldms = 'আইডি পাঠাতে রিজার্জ করুন';
+                                }
+                            @endphp
 
         <!-- Content Row -->
         <div class="row">
@@ -20,8 +49,13 @@
                 <div class="col-xl-12 col-md-6 mb-4">
 
                     <div class="card border-left-primary shadow h-100 py-2">
+                    <div style="text-align: center;
+                    color: red;
+                    font-weight: bold;">
+                        {{$idfieldms}}
+                    </div>
+                        <div style="display: {{$idfield}}" class="card-body">
 
-                        <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
                                     <div
