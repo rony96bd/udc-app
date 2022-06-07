@@ -12,6 +12,7 @@
                 {{ session()->get('message') }}
             </div>
         @endif
+        <!-- Add Credit System -->
         @php
         $user = Auth()->user();
 
