@@ -82,24 +82,6 @@
                  data-parent="#accordionSidebar">
             </div>
         </li>
-        <li class="nav-item @php if($menustatus=='payinfo'){echo 'active'; }  @endphp">
-            <a class="nav-link" href="{{ URL::to('/payinfo') }}">
-                <i class="fa-solid fa-flag"></i>
-                <span>Notice Board</span>
-            </a>
-            <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                 data-parent="#accordionSidebar">
-            </div>
-        </li>
-        <li class="nav-item @php if($menustatus=='payinfo'){echo 'active'; }  @endphp">
-            <a class="nav-link" href="{{ URL::to('/payinfo') }}">
-                <i class="fas fa-heart"></i>
-                <span>Help</span>
-            </a>
-            <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                 data-parent="#accordionSidebar">
-            </div>
-        </li>
 
         <!-- Divider -->
         <hr class="sidebar-divider">
@@ -135,6 +117,13 @@
                 ->sum('taka');
 
             $balance_admin = $paid_admin - $total_payable_admin;
+
+            if ($balance < -500) {
+                $badge_color = 'danger';
+            } else {
+                $badge_color = 'success';
+            }
+
         @endphp
 
             <!-- Main Content -->
@@ -143,10 +132,10 @@
             <!-- Topbar -->
             <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
                 <div class="hwrap"><div class="hmove">
-                    <div class="hitem">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-                    <div class="hitem">Aliquam consequat varius consequat.</div>
-                    <div class="hitem">Fusce dapibus turpis vel nisi malesuada sollicitudin.</div>
-                    <div class="hitem">Pellentesque auctor molestie orci ut blandit.</div>
+                    <div class="hitem"><i class="fa-solid fa-angles-right"></i> জরুরী প্রয়োজনে ফোন করুন: 01726795363 (আব্দুল্লাহ), 01722414101 (রনি)</div>
+                    <div class="hitem"><i class="fa-solid fa-angles-right"></i> ব্যালেন্স ৫০০/- টাকার উপরে হয়ে গেলে দ্রুত পেমেন্ট করতে হবে।</div>
+                    <div class="hitem"><i class="fa-solid fa-angles-right"></i> পেমেন্ট করে অবশ্যই ঐ দিনই Approver Software এর Payment Info তে গিয়ে Add Payment করতে হবে।</div>
+                    <div class="hitem"><i class="fa-solid fa-angles-right"></i> Add Payment এ টাকার পরিমাণ ও যে মোবাইল দিয়ে বিকাশ/নগদ করেছেন অবশ্যই সেই নম্বরটি অথবা Transaction ID দিতে হবে।</div>
                   </div></div>
                 <!-- Sidebar Toggle (Topbar) -->
                 <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -162,7 +151,7 @@
                            aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-money-bill fa-fw"></i>
                             <!-- Counter - Alerts -->
-                            <span class="badge badge-success">
+                            <span class="badge badge-{{ $badge_color }}">
                                 @if ($user->is_admin == '1')
                                     {{ $balance_admin }}
                                 @else
@@ -233,11 +222,11 @@
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                              aria-labelledby="userDropdown">
                             <a class="dropdown-item" href="#">
-                                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                <i class="fa-solid fa-sack-dollar fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Balance: {{ $balance }}
                             </a>
                             <a class="dropdown-item" href="{{ route('change-password') }}">
-                                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                <i class="fa-solid fa-key fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Change Password
                             </a>
 
