@@ -30,6 +30,8 @@
                             </div>
                         </div>
                     </div>
+                    <div style="color: red; text-align: center;"><i class="fa-solid fa-angles-right"></i> পেমেন্ট করে অবশ্যই ঐ দিনই Approver Software এ Add Payment করতে হবে।</div>
+                    <div style="color: red; text-align: center;"><i class="fa-solid fa-angles-right"></i> Add Payment এ টাকার পরিমাণ ও যে মোবাইল নম্বর দিয়ে বিকাশ/নগদ করেছেন অবশ্যই সেই নম্বরটি অথবা Transaction ID দিতে হবে।</div>
                 </div>
             </div>
         </div>

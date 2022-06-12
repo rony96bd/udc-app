@@ -79,6 +79,10 @@
             order: [[2, 'desc'], [0, 'desc']],
         });
 
+        $('#example-user').DataTable({
+            order: [0, 'desc'],
+        });
+
         // Activate the 'selected' class
         // on clicking the rows
         $('#example tbody').on('click', 'tr', function () {
