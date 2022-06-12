@@ -80,7 +80,7 @@
         });
 
         $('#example-user').DataTable({
-            order: [0, 'desc'],
+            order: [[2, 'desc'], [0, 'desc']],
         });
 
         // Activate the 'selected' class
