@@ -76,10 +76,6 @@
     }
     $(document).ready(function() {
         $('#example').DataTable({
-            processing: true,
-            responsive: true,
-            serverSide: true,
-            stateSave: true,
             iDisplayLength: 100,
             order: [
                 [2, 'desc'],
