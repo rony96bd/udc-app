@@ -116,7 +116,7 @@
             $paid_admin = App\Models\Payment::where('status', 'Approved')
                 ->sum('taka');
 
-            $balance_admin = $paid_admin - $total_payable_admin;
+            $balance_admin = $total_payable_admin - $paid_admin;
 
             if ($balance < -500) {
                 $badge_color = 'danger';

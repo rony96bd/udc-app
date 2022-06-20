@@ -33,7 +33,7 @@
                                     $paid = App\Models\Payment::where('user_id', $usr->id)
                                         ->where('status', 'Approved')
                                         ->sum('taka');
-                                    $balance = $total_payable - $paid;
+                                    $balance = $paid - $total_payable;
                                 @endphp
                                 <tr>
                                     <td>{{ $usr->id }}</td>
@@ -60,7 +60,7 @@
                     ->where('status', 'Approved')
                     ->sum('taka');
 
-                $balance2 = $total_payable - $paid;
+                $balance2 = $paid - $total_payable;
             @endphp
 
                         @if($user->is_admin ==0)
