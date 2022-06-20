@@ -32,13 +32,13 @@
 <script src="{{ url('src/js/sb-admin-2.min.js') }}"></script>
 
 <!-- Page level plugins -->
-{{--<script src="{{ url('src/vendor/chart.js/Chart.min.js') }}"></script>--}}
+{{-- <script src="{{ url('src/vendor/chart.js/Chart.min.js') }}"></script> --}}
 <script src="{{ url('src/vendor/datatables/jquery.dataTables.min.js') }}"></script>
 <script src="{{ url('src/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
 
 <!-- Page level custom scripts -->
-{{--<script src="{{ url('src/js/demo/chart-area-demo.js') }}"></script>--}}
-{{--<script src="{{ url('src/js/demo/chart-pie-demo.js') }}"></script>--}}
+{{-- <script src="{{ url('src/js/demo/chart-area-demo.js') }}"></script> --}}
+{{-- <script src="{{ url('src/js/demo/chart-pie-demo.js') }}"></script> --}}
 <script src="{{ url('src/js/demo/datatables-demo.js') }}"></script>
 <script src="https://kit.fontawesome.com/88197b63d0.js" crossorigin="anonymous"></script>
 <script>
@@ -74,25 +74,36 @@
         clickedBtn.style.color = 'white';
         clickedBtn.style.background = 'green';
     }
-    $(document).ready(function () {
+    $(document).ready(function() {
         $('#example').DataTable({
-            order: [[2, 'desc'], [0, 'desc']],
+            processing: true,
+            responsive: true,
+            serverSide: true,
+            stateSave: true,
+            iDisplayLength: 100,
+            order: [
+                [2, 'desc'],
+                [0, 'desc']
+            ],
         });
 
         $('#example-user').DataTable({
-            order: [[2, 'desc'], [0, 'desc']],
+            order: [
+                [2, 'desc'],
+                [0, 'desc']
+            ],
         });
 
         // Activate the 'selected' class
         // on clicking the rows
-        $('#example tbody').on('click', 'tr', function () {
+        $('#example tbody').on('click', 'tr', function() {
             $(this).toggleClass('selected');
         });
 
         //on click exampleApprove button
-        $('#exampleApprove').on('click', function () {
+        $('#exampleApprove').on('click', function() {
             const ids = [];
-            $('#example tbody tr.selected').each(function () {
+            $('#example tbody tr.selected').each(function() {
                 ids.push($(this).find('span').attr('id'));
             });
             $.ajax({
@@ -102,7 +113,7 @@
                     '_token': '{{ csrf_token() }}',
                     'ids': ids,
                 },
-                success: function (data) {
+                success: function(data) {
                     if (data.success) {
                         location.reload();
                     } else {
@@ -112,9 +123,9 @@
             });
         });
         //on click exampleApprove button
-        $('#exampleReject').on('click', function () {
+        $('#exampleReject').on('click', function() {
             const ids = [];
-            $('#example tbody tr.selected').each(function () {
+            $('#example tbody tr.selected').each(function() {
                 ids.push($(this).find('span').attr('id'));
             });
             $.ajax({
@@ -124,7 +135,7 @@
                     '_token': '{{ csrf_token() }}',
                     'ids': ids,
                 },
-                success: function (data) {
+                success: function(data) {
                     if (data.success) {
                         location.reload();
                     } else {
@@ -134,9 +145,9 @@
             });
         });
         //on click exampleDelete button
-        $('#exampleDelete').on('click', function () {
+        $('#exampleDelete').on('click', function() {
             const ids = [];
-            $('#example tbody tr.selected').each(function () {
+            $('#example tbody tr.selected').each(function() {
                 ids.push($(this).find('span').attr('id'));
             });
             $.ajax({
@@ -146,7 +157,7 @@
                     '_token': '{{ csrf_token() }}',
                     'ids': ids,
                 },
-                success: function (data) {
+                success: function(data) {
                     if (data.success) {
                         location.reload();
                     } else {
