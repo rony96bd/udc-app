@@ -135,7 +135,7 @@
                     <div class="hitem"><i class="fa-solid fa-angles-right"></i> জরুরী প্রয়োজনে ফোন করুন: 01726795363 (আব্দুল্লাহ), 01722414101 (রনি)</div>
                     <div class="hitem"><i class="fa-solid fa-angles-right"></i> ব্যালেন্স ৫০০/- টাকার উপরে হয়ে গেলে দ্রুত পেমেন্ট করতে হবে।</div>
                     <div class="hitem"><i class="fa-solid fa-angles-right"></i> পেমেন্ট করে অবশ্যই ঐ দিনই Approver Software এর Payment Info তে গিয়ে Add Payment করতে হবে।</div>
-                    <div class="hitem"><i class="fa-solid fa-angles-right"></i> Add Payment এ টাকার পরিমাণ ও যে মোবাইল দিয়ে বিকাশ/নগদ করেছেন অবশ্যই সেই নম্বরটি অথবা Transaction ID দিতে হবে।</div>
+                    <div class="hitem"><i class="fa-solid fa-angles-right"></i> Add Payment এ টাকার পরিমাণ ও Transaction ID দিতে হবে। যদি বাইরে থেকে বিকাশ বা নগদ করেন তাহলে যে নাম্বার দিয়ে টাকা সেন্ড করেছেন সেই নাম্বারটিই দিতে হবে।</div>
                   </div></div>
                 <!-- Sidebar Toggle (Topbar) -->
                 <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
