@@ -132,13 +132,14 @@
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
                     <div class="hwrap">
                         <div class="hmove">
+                            <div class="hitem"><i class="fa-solid fa-angles-right"></i> আগামী ৩০/০৬/২০২২ তারিখ বৃহস্পতিবার সফ্টওয়্যার রিসেট করা হবে, তাই বৃহস্পতিবার সন্ধ্যা ৬.০০ টার মধ্যে সবাইকে টাকা পাঠিয়ে ব্যালেন্স শূন্য করার জন্য অনুরোধ করা হলো।</div>
                             <div class="hitem"><i class="fa-solid fa-angles-right"></i> জরুরী প্রয়োজনে ফোন করুন:
                                 01726795363 (আব্দুল্লাহ), 01722414101 (রনি)</div>
-                            <div class="hitem"><i class="fa-solid fa-angles-right"></i> ব্যালেন্স ৫০০/- টাকার উপরে হয়ে
+                            <div style="display: none" class="hitem"><i class="fa-solid fa-angles-right"></i> ব্যালেন্স ৫০০/- টাকার উপরে হয়ে
                                 গেলে দ্রুত পেমেন্ট করতে হবে।</div>
                             <div class="hitem"><i class="fa-solid fa-angles-right"></i> পেমেন্ট করে অবশ্যই ঐ দিনই
                                 Approver Software এর Payment Info তে গিয়ে Add Payment করতে হবে।</div>
-                            <div class="hitem"><i class="fa-solid fa-angles-right"></i> Add Payment এ টাকার পরিমাণ ও
+                            <div style="display: none" class="hitem"><i class="fa-solid fa-angles-right"></i> Add Payment এ টাকার পরিমাণ ও
                                 Transaction ID দিতে হবে। যদি বাইরে থেকে বিকাশ বা নগদ করেন তাহলে যে নাম্বার দিয়ে টাকা
                                 সেন্ড করেছেন সেই নাম্বারটিই দিতে হবে।</div>
                         </div>
