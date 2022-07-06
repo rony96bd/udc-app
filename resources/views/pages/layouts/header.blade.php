@@ -134,8 +134,7 @@
                         <div class="hmove">
                             <div class="hitem"><i class="fa-solid fa-angles-right"></i> জরুরী প্রয়োজনে ফোন করুন:
                                 01726795363 (আব্দুল্লাহ), 01722414101 (রনি)</div>
-                            <div style="display: none" class="hitem"><i class="fa-solid fa-angles-right"></i> ব্যালেন্স ৫০০/- টাকার উপরে হয়ে
-                                গেলে দ্রুত পেমেন্ট করতে হবে।</div>
+                            <div class="hitem"><i class="fa-solid fa-angles-right"></i>প্রতি সপ্তাহে বৃহস্পতিবার সবাইকে পেমেন্ট করে ব্যালেন্স শূন্য করার জন্য অনুরোধ করছি।</div>
                             <div class="hitem"><i class="fa-solid fa-angles-right"></i> পেমেন্ট করে অবশ্যই ঐ দিনই
                                 Approver Software এর Payment Info তে গিয়ে Add Payment করতে হবে।</div>
                             <div style="display: none" class="hitem"><i class="fa-solid fa-angles-right"></i> Add Payment এ টাকার পরিমাণ ও
