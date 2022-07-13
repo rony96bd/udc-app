@@ -57,22 +57,25 @@ $payments_date = DB::table('payments')
     ->where('user_id', $user->id)
     ->orderBy('created_at', 'DESC')
     ->first(['created_at']);
+if ($user->is_admin == '0') {
+    $last_pay_day = strtotime($payments_date->created_at);
 
-$last_pay_day = strtotime($payments_date->created_at);
+    $now = time();
+    $your_date = $last_pay_day;
+    $datediff = $now - $your_date;
+    $day_diff = round($datediff / (60 * 60 * 24));
 
-$now = time();
-$your_date = $last_pay_day;
-$datediff = $now - $your_date;
-$day_diff = round($datediff / (60 * 60 * 24));
-
-if ($day_diff > 7 && $balance < -500) {
-    echo '<script>';
-        echo '$(document).ready(function() {
-        $("#myModal").modal("show");
-        });';
-        echo '</script>';
+    if ($day_diff > 7 && $balance < -500) {
+        echo '<script>
+            ';
+            echo '$(document).ready(function() {
+            $("#myModal").modal("show");
+            });
+            ';
+            echo '
+        </script>';
+    }
 }
-
 @endphp
 
 <script>

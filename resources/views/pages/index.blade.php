@@ -35,23 +35,27 @@
                 $badge_color = 'success';
             }
 
-            $payments_date = DB::table('payments')->where('user_id', $user->id)
+            $payments_date = DB::table('payments')
+                ->where('user_id', $user->id)
                 ->orderBy('created_at', 'DESC')
                 ->first(['created_at']);
 
-            $last_pay_day = strtotime($payments_date->created_at);
+            if ($user->is_admin == '0') {
 
-            $now = time();
-            $your_date = $last_pay_day;
-            $datediff = $now - $your_date;
+                $last_pay_day = strtotime($payments_date->created_at);
 
-            $day_diff = round($datediff / (60 * 60 * 24));
+                $now = time();
+                $datediff = $now - $last_pay_day;
 
-            if ($balance < -500 && $day_diff > 7) {
-                $autofocus = '';
-            } else {
-                $autofocus = 'autofocus = "on"';
+                $day_diff = round($datediff / (60 * 60 * 24));
+
+                if ($balance < -500 && $day_diff > 7) {
+                    $autofocus = '';
+                } else {
+                    $autofocus = 'autofocus = "on"';
+                }
             }
+
         @endphp
 
         <!-- Content Row -->
