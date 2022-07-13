@@ -64,35 +64,24 @@ if ($balance < -500) {
     $badge_color = 'success';
 }
 
-$payments_date = DB::table('payments')->where('user_id', $user->id)
-                ->orderBy('created_at', 'DESC')
-                ->first(['created_at']);
+$payments_date = DB::table('payments')
+    ->where('user_id', $user->id)
+    ->orderBy('created_at', 'DESC')
+    ->first(['created_at']);
 
-            $last_pay_day = strtotime($payments_date->created_at);
+$last_pay_day = strtotime($payments_date->created_at);
 
-            $now = time();
-            $your_date = $last_pay_day;
-            $datediff = $now - $your_date;
+$now = time();
+$your_date = $last_pay_day;
+$datediff = $now - $your_date;
+$day_diff = round($datediff / (60 * 60 * 24) - 1);
 
-            echo $now;
-            echo "<br>";
-            echo $payments_date->created_at;
-            echo "<br>";
-            echo $your_date;
-            echo "<br>";
-            echo date('h:i A');
-            echo "<br>";
-
-            $day_diff = round($datediff / (60 * 60 * 24) - 1);
-
-            echo $day_diff;
-
-if ($day_diff > 6) {
+if ($day_diff > 6 && $balance < -500) {
     echo '<script>';
-    echo '$(document).ready(function() {
-            $("#myModal").modal("show");
+        echo '$(document).ready(function() {
+        $("#myModal").modal("show");
         });';
-    echo '</script>';
+        echo '</script>';
 }
 
 @endphp
