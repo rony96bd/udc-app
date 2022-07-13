@@ -49,14 +49,11 @@
 
             $day_diff = round($datediff / (60 * 60 * 24) - 1);
 
-
             if ($balance < -500 && $day_diff > 6) {
                 $autofocus = '';
             } else {
                 $autofocus = 'autofocus = "on"';
             }
-
-            echo $autofocus;
         @endphp
 
         <!-- Content Row -->
