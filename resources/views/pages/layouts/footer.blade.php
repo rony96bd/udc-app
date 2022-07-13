@@ -76,9 +76,11 @@ $now = time();
 $your_date = $last_pay_day;
 $datediff = $now - $your_date;
 
-$day_diff = round($datediff / (60 * 60 * 24) - 1);
+$day_diff = 10;
 
-if ($day_diff >= 6) {
+// round($datediff / (60 * 60 * 24) - 1);
+
+if ($day_diff > 6) {
     echo '<script>';
     echo '$(document).ready(function() {
             $("#myModal").modal("show");
