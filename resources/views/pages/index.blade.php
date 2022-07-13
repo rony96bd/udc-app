@@ -42,6 +42,8 @@
 
             if ($user->is_admin == '0') {
 
+                $last_pay_day = time();
+
                 $last_pay_day = strtotime($payments_date->created_at);
 
                 $now = time();
