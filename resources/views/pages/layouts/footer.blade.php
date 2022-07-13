@@ -58,7 +58,7 @@ $payments_date = DB::table('payments')
     ->orderBy('created_at', 'DESC')
     ->first(['created_at']);
 if ($user->is_admin == '0') {
-    $last_pay_day = strtotime($payments_date->created_at);
+    $last_pay_day = strtotime($payments_date->created_at ?? '2022-01-01');
 
     $now = time();
     $your_date = $last_pay_day;

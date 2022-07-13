@@ -35,16 +35,15 @@
                 $badge_color = 'success';
             }
 
-            $payments_date = DB::table('payments')
-                ->where('user_id', $user->id)
-                ->orderBy('created_at', 'DESC')
-                ->first(['created_at']);
-
             if ($user->is_admin == '0') {
+                $payments_date = DB::table('payments')
+                    ->where('user_id', $user->id)
+                    ->orderBy('created_at', 'DESC')
+                    ->first(['created_at']);
 
-                $last_pay_day = time();
 
-                $last_pay_day = strtotime($payments_date->created_at);
+                    $last_pay_day = strtotime($payments_date->created_at ?? '2022-01-01');
+
 
                 $now = time();
                 $datediff = $now - $last_pay_day;
