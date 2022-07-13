@@ -78,15 +78,23 @@ $datediff = $now - $your_date;
 
 $day_diff = round($datediff / (60 * 60 * 24) - 1);
 
+if ($balance < -500 && $day_diff > 6) {
+    echo '<script>';
+    echo '$(document).ready(function() {
+            $("#myModal").modal("show");
+        });';
+    echo '</script>';
+}
+
 @endphp
 
-@if ($balance < -500 & $day_diff > 6)
+{{-- @if (($balance < -500) & ($day_diff > 6))
     <script>
         $(document).ready(function() {
             $("#myModal").modal('show');
         });
     </script>
-@endif
+@endif --}}
 
 <script>
     function copyToClipboard(text) {
