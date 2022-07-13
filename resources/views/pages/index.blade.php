@@ -45,18 +45,7 @@
             $your_date = $last_pay_day;
             $datediff = $now - $your_date;
 
-            echo $now;
-            echo "<br>";
-            echo $payments_date->created_at;
-            echo "<br>";
-            echo $your_date;
-            echo "<br>";
-            echo date('h:i A');
-            echo "<br>";
-
             $day_diff = round($datediff / (60 * 60 * 24));
-
-            echo $day_diff;
 
             if ($balance < -500 && $day_diff > 7) {
                 $autofocus = '';
