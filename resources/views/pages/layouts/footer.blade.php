@@ -64,7 +64,9 @@ if ($balance < -500) {
     $badge_color = 'success';
 }
 
-$payments_date = DB::table('payments')->orderBy('created_at', 'DESC')->first(['created_at']);
+$payments_date = DB::table('payments')
+    ->orderBy('created_at', 'DESC')
+    ->first(['created_at']);
 
 $payments_date_data = json_decode(json_encode($payments_date, true));
 
@@ -78,8 +80,12 @@ $day_diff = round($datediff / (60 * 60 * 24) - 1);
 
 @endphp
 
-
 <script>
+    $(document).ready(function() {
+        $("#myModal").modal('show');
+    });
+</script>
+{{-- <script>
     var balance = '<?= $balance ?>';
     var diffday = '<?= $day_diff ?>';
     if (balance < -500 && diffday > 6) {
@@ -87,7 +93,7 @@ $day_diff = round($datediff / (60 * 60 * 24) - 1);
             $("#myModal").modal('show');
         });
     }
-</script>
+</script> --}}
 <script>
     function copyToClipboard(text) {
         if (window.clipboardData && window.clipboardData.setData) {
