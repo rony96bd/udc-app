@@ -49,8 +49,9 @@
 
             echo $now;
             echo "<br>";
-
             echo $your_date;
+            echo "<br>";
+            echo date('h:i A');
 
             $day_diff = round($datediff / (60 * 60 * 24) - 1);
 
