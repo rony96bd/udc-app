@@ -53,17 +53,6 @@ $paid = App\Models\Payment::where('user_id', $user->id)
 
 $balance = $paid - $total_payable;
 
-$total_payable_admin = App\Models\Brid::where('status', 'Approved')->sum('rate');
-$paid_admin = App\Models\Payment::where('status', 'Approved')->sum('taka');
-
-$balance_admin = $total_payable_admin - $paid_admin;
-
-if ($balance < -500) {
-    $badge_color = 'danger';
-} else {
-    $badge_color = 'success';
-}
-
 $payments_date = DB::table('payments')
     ->where('user_id', $user->id)
     ->orderBy('created_at', 'DESC')
@@ -85,14 +74,6 @@ if ($day_diff > 7 && $balance < -500) {
 }
 
 @endphp
-
-{{-- @if (($balance < -500) & ($day_diff > 6))
-    <script>
-        $(document).ready(function() {
-            $("#myModal").modal('show');
-        });
-    </script>
-@endif --}}
 
 <script>
     function copyToClipboard(text) {
