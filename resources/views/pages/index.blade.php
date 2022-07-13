@@ -47,6 +47,11 @@
             $your_date = $last_pay_day;
             $datediff = $now - $your_date;
 
+            echo $now;
+            echo "<br>";
+
+            echo $your_date;
+
             $day_diff = round($datediff / (60 * 60 * 24) - 1);
 
             if ($balance < -500 && $day_diff > 6) {
