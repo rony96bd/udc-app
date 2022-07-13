@@ -41,6 +41,53 @@
 {{-- <script src="{{ url('src/js/demo/chart-pie-demo.js') }}"></script> --}}
 <script src="{{ url('src/js/demo/datatables-demo.js') }}"></script>
 <script src="https://kit.fontawesome.com/88197b63d0.js" crossorigin="anonymous"></script>
+@php
+$user = Auth()->user();
+
+$total_payable = App\Models\Brid::where('user_id', $user->id)
+    ->where('status', 'Approved')
+    ->sum('rate');
+$paid = App\Models\Payment::where('user_id', $user->id)
+    ->where('status', 'Approved')
+    ->sum('taka');
+
+$balance = $paid - $total_payable;
+
+$total_payable_admin = App\Models\Brid::where('status', 'Approved')->sum('rate');
+$paid_admin = App\Models\Payment::where('status', 'Approved')->sum('taka');
+
+$balance_admin = $total_payable_admin - $paid_admin;
+
+if ($balance < -500) {
+    $badge_color = 'danger';
+} else {
+    $badge_color = 'success';
+}
+
+$payments_date = DB::table('payments')->orderBy('created_at', 'DESC')->first(['created_at']);
+
+$payments_date_data = json_decode(json_encode($payments_date, true));
+
+$last_pay_day = strtotime($payments_date->created_at);
+
+$now = time();
+$your_date = $last_pay_day;
+$datediff = $now - $your_date;
+
+$day_diff = round($datediff / (60 * 60 * 24) - 1);
+
+@endphp
+
+
+<script>
+    var balance = '<?= $balance ?>';
+    var diffday = '<?= $day_diff ?>';
+    if (balance < -500 && diffday > 6) {
+        $(document).ready(function() {
+            $("#myModal").modal('show');
+        });
+    }
+</script>
 <script>
     function copyToClipboard(text) {
         if (window.clipboardData && window.clipboardData.setData) {
