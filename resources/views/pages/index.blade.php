@@ -52,8 +52,11 @@
             echo $your_date;
             echo "<br>";
             echo date('h:i A');
+            echo "<br>";
 
             $day_diff = round($datediff / (60 * 60 * 24) - 1);
+
+            echo $day_diff;
 
             if ($balance < -500 && $day_diff > 6) {
                 $autofocus = '';
