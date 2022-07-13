@@ -74,9 +74,9 @@ $last_pay_day = strtotime($payments_date->created_at);
 $now = time();
 $your_date = $last_pay_day;
 $datediff = $now - $your_date;
-$day_diff = round($datediff / (60 * 60 * 24) - 1);
+$day_diff = round($datediff / (60 * 60 * 24));
 
-if ($day_diff > 6 && $balance < -500) {
+if ($day_diff > 7 && $balance < -500) {
     echo '<script>';
         echo '$(document).ready(function() {
         $("#myModal").modal("show");
