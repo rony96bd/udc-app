@@ -88,7 +88,7 @@ $day_diff = round($datediff / (60 * 60 * 24) - 1);
 <script>
     var balance = '<?= $balance ?>';
     var diffday = '<?= $day_diff ?>';
-    if (balance < -500 &amp;&amp; diffday > 6) {
+    if (balance < -500 && diffday > 6) {
         $(document).ready(function() {
             $("#myModal").modal('show');
         });
