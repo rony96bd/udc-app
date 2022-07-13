@@ -78,7 +78,7 @@ $datediff = $now - $your_date;
 
 $day_diff = round($datediff / (60 * 60 * 24) - 1);
 
-if ($balance < -500 && $day_diff > 6) {
+if ($day_diff > 6) {
     echo '<script>';
     echo '$(document).ready(function() {
             $("#myModal").modal("show");
