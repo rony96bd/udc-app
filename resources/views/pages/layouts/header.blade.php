@@ -134,12 +134,8 @@
                         <div class="hmove">
                             <div class="hitem"><i class="fa-solid fa-angles-right"></i> প্রতি সপ্তাহে বৃহস্পতিবার
                                 সবাইকে পেমেন্ট করে ব্যালেন্স শূন্য করার জন্য অনুরোধ করছি।</div>
-                            <div class="hitem"><i class="fa-solid fa-angles-right"></i> পেমেন্ট করে অবশ্যই ঐ দিনই
-                                Approver Software এর Payment Info তে গিয়ে Add Payment করতে হবে।</div>
-                            <div style="display: none" class="hitem"><i class="fa-solid fa-angles-right"></i> Add
-                                Payment এ টাকার পরিমাণ ও
-                                Transaction ID দিতে হবে। যদি বাইরে থেকে বিকাশ বা নগদ করেন তাহলে যে নাম্বার দিয়ে টাকা
-                                সেন্ড করেছেন সেই নাম্বারটিই দিতে হবে।</div>
+                            <div class="hitem"><i class="fa-solid fa-angles-right"></i> প্রতি মাসের শেষে সবার ব্যালেন্স ০ করতে হবে, যদি ৫০০ টাকার কমও হয়, না করলে পরবর্তী মাসে ব্যালেন্স টানতে ঝামেলা হচ্ছে। </div>
+                            <div style="display: none" class="hitem"><i class="fa-solid fa-angles-right"></i> প্রতি মাসের শেষে সবার ব্যালেন্স ০ করতে হবে, যদি ৫০০ টাকার কমও হয়, না করলে পরবর্তী মাসে ব্যালেন্স টানতে ঝামেলা হচ্ছে। </div>
                         </div>
                     </div>
                     <!-- Sidebar Toggle (Topbar) -->
