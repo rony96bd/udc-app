@@ -174,19 +174,19 @@
                                             @csrf
                                             <input type="hidden" name="id" value="{{ $brId->id }}" />
                                             <td style="vertical-align: middle; color: {{ $txtcol }};" align="center">
-                                                @if ($user->is_admin == '0')
+                                                @if ($user->is_admin == '1')
                                                     {{ $brId->status }}
                                                 @endif
 
                                                 @if ($user->is_admin == '1')
-                                                    <select style="color: {{ $txtcol }};" name="status"
+                                                    {{-- <select style="color: {{ $txtcol }};" name="status"
                                                         onchange='if(this.value != 0) { this.form.submit(); }'
                                                         class="form-select center">
                                                         <option>{{ $brId->status }}</option>
                                                         <option style="color: rgb(9, 214, 9);">Approved</option>
                                                         <option style="color: red;">Reject</option>
                                                         <option style="color: blue;">Pending</option>
-                                                    </select>
+                                                    </select> --}}
                                                 @endif
                                             </td>
 
