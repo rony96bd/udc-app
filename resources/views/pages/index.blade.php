@@ -191,15 +191,15 @@
                                             </td>
 
                                             <td style="vertical-align: middle;" align="center">
-                                                @if ($user->is_admin == '0')
+                                                @if ($user->is_admin == '1')
                                                     {{ $brId->id_type }}
                                                 @endif
                                                 @if ($user->is_admin == '1')
-                                                    <select name="id_type" class="form-select center">
+                                                    {{-- <select name="id_type" class="form-select center">
                                                         <option>{{ $brId->id_type }}</option>
                                                         <option>Regular</option>
                                                         <option>DoB Correction</option>
-                                                    </select>
+                                                    </select> --}}
                                                 @endif
                                             </td>
 
