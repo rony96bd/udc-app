@@ -67,7 +67,7 @@ class HomeController extends Controller
             $log = new Log();
             $log->user_id = Auth()->user()->id;
             $log->action = "Update";
-            $log->status = $req->status;
+            // $log->status = $req->status;
             $log->old_data = json_encode($brids_old);
             $log->new_data = json_encode($brids);
             $log->ip_address = $req->ip();
