@@ -174,32 +174,32 @@
                                             @csrf
                                             <input type="hidden" name="id" value="{{ $brId->id }}" />
                                             <td style="vertical-align: middle; color: {{ $txtcol }};" align="center">
-                                                @if ($user->is_admin == '1')
+                                                @if ($user->is_admin == '0')
                                                     {{ $brId->status }}
                                                 @endif
 
                                                 @if ($user->is_admin == '1')
-                                                    {{-- <select style="color: {{ $txtcol }};" name="status"
+                                                    <select style="color: {{ $txtcol }};" name="status"
                                                         onchange='if(this.value != 0) { this.form.submit(); }'
                                                         class="form-select center">
                                                         <option>{{ $brId->status }}</option>
                                                         <option style="color: rgb(9, 214, 9);">Approved</option>
                                                         <option style="color: red;">Reject</option>
                                                         <option style="color: blue;">Pending</option>
-                                                    </select> --}}
+                                                    </select>
                                                 @endif
                                             </td>
 
                                             <td style="vertical-align: middle;" align="center">
-                                                @if ($user->is_admin == '1')
+                                                @if ($user->is_admin == '0')
                                                     {{ $brId->id_type }}
                                                 @endif
                                                 @if ($user->is_admin == '1')
-                                                    {{-- <select name="id_type" class="form-select center">
+                                                    <select name="id_type" class="form-select center">
                                                         <option>{{ $brId->id_type }}</option>
                                                         <option>Regular</option>
                                                         <option>DoB Correction</option>
-                                                    </select> --}}
+                                                    </select>
                                                 @endif
                                             </td>
 
@@ -223,7 +223,7 @@
                                             </td>
                                             @if ($user->is_admin == '1')
                                                 <td style="vertical-align: middle;">
-                                                    {{-- <span>{{ $brId->name }}</span><br> --}}
+                                                    <span>{{ $brId->name }}</span><br>
                                                     <span>{{ $brId->email }}</span>
                                                 </td>
                                                 <td class="d-flex justify-content-between" style="vertical-align: middle;">

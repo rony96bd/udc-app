@@ -57,8 +57,8 @@ class HomeController extends Controller
     {
         $brids = Brid::findOrFail($req->id);
         $brids_old = $brids;
-        // $brids->status = $req->status;
-        // $brids->id_type = $req->id_type;
+        $brids->status = $req->status;
+        $brids->id_type = $req->id_type;
         $brids->rate = $req->rate;
         $brids->message = $req->message;
         $brids->save();
@@ -67,7 +67,7 @@ class HomeController extends Controller
             $log = new Log();
             $log->user_id = Auth()->user()->id;
             $log->action = "Update";
-            // $log->status = $req->status;
+            $log->status = $req->status;
             $log->old_data = json_encode($brids_old);
             $log->new_data = json_encode($brids);
             $log->ip_address = $req->ip();
