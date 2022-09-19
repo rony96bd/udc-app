@@ -29,7 +29,7 @@ class LogListener
         Log::create([
             'user_id' => $event->user_id,
             'action' => $event->action,
-            'status' => $event->status,
+            // 'status' => $event->status,
             'old_data' => $event->old_data,
             'new_data' => $event->new_data,
             'ip_address' => $event->ip_address,
