@@ -57,8 +57,8 @@ class HomeController extends Controller
     {
         $brids = Brid::findOrFail($req->id);
         $brids_old = $brids;
-        $brids->status = $req->status;
-        $brids->id_type = $req->id_type;
+        // $brids->status = $req->status;
+        // $brids->id_type = $req->id_type;
         $brids->rate = $req->rate;
         $brids->message = $req->message;
         $brids->save();
