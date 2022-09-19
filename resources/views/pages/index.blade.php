@@ -223,7 +223,7 @@
                                             </td>
                                             @if ($user->is_admin == '1')
                                                 <td style="vertical-align: middle;">
-                                                    <span>{{ $brId->name }}</span><br>
+                                                    {{-- <span>{{ $brId->name }}</span><br> --}}
                                                     <span>{{ $brId->email }}</span>
                                                 </td>
                                                 <td class="d-flex justify-content-between" style="vertical-align: middle;">
