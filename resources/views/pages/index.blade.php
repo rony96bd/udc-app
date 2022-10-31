@@ -55,6 +55,12 @@
                 } else {
                     $autofocus = 'autofocus = "on"';
                 }
+
+                if ($balance < -1000) {
+                    $div_disable = 'display:none';
+                } else {
+                    $div_disable = '';
+                }
             }
 
         @endphp
@@ -77,7 +83,7 @@
                                         <form action="{{ Route('addBr') }}" method="POST"
                                             class="d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                                             @csrf
-                                            <div class="input-group">
+                                            <div class="input-group" style={{ $div_disable }}>
                                                 <input name="brid" type="text" {{ $autofocus }}
                                                     class="form-control bg-light border-0 small" placeholder="Write ID"
                                                     aria-label="Send ID" aria-describedby="basic-addon2">
@@ -320,6 +326,20 @@
                 </div>
                 <div class="modal-body">
                     <p>আপনার ব্যালেন্স ৫০০+ এবং ৮ দিনের মধ্যে কোন পেমেন্ট করেননি</p>
+                    <h3>দয়া করে পেমেন্ট করুন</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="myModal2" class="modal fade">
+        <div class="modal-dialog text-center">
+            <div class="modal-content bg-danger text-white">
+                <div class="modal-header">
+                    <h5 class="modal-title">Payment Aleart</h5>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p>আপনার ব্যালেন্স ১০০০+ হয়েছে। আপনার আইডি পাঠানো ডিসেবল করা হয়েছে।</p>
                     <h3>দয়া করে পেমেন্ট করুন</h3>
                 </div>
             </div>

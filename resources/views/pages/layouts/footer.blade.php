@@ -57,6 +57,7 @@ $payments_date = DB::table('payments')
     ->where('user_id', $user->id)
     ->orderBy('created_at', 'DESC')
     ->first(['created_at']);
+
 if ($user->is_admin == '0') {
     $last_pay_day = strtotime($payments_date->created_at ?? '2022-01-01');
 
@@ -70,6 +71,20 @@ if ($user->is_admin == '0') {
             ';
             echo '$(document).ready(function() {
             $("#myModal").modal("show");
+            });
+            ';
+            echo '
+        </script>';
+
+    }
+}
+if ($user->is_admin == '0') {
+
+    if ($balance < -1000) {
+        echo '<script>
+            ';
+            echo '$(document).ready(function() {
+            $("#myModal2").modal("show");
             });
             ';
             echo '
