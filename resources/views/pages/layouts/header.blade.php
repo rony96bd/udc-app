@@ -132,10 +132,9 @@
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
                     <div class="hwrap">
                         <div class="hmove">
-                            <div class="hitem"><i class="fa-solid fa-angles-right"></i> প্রতি সপ্তাহে বৃহস্পতিবার
-                                সবাইকে পেমেন্ট করে ব্যালেন্স শূন্য করার জন্য অনুরোধ করছি।</div>
-                            <div class="hitem"><i class="fa-solid fa-angles-right"></i> প্রতি মাসের শেষে সবার ব্যালেন্স ০ করতে হবে, যদি ৫০০ টাকার কমও হয়, না করলে পরবর্তী মাসে ব্যালেন্স টানতে ঝামেলা হচ্ছে। </div>
-                            <div style="display: none" class="hitem"><i class="fa-solid fa-angles-right"></i> প্রতি মাসের শেষে সবার ব্যালেন্স ০ করতে হবে, যদি ৫০০ টাকার কমও হয়, না করলে পরবর্তী মাসে ব্যালেন্স টানতে ঝামেলা হচ্ছে। </div>
+                            <div class="hitem"><i class="fa-solid fa-angles-right"></i> ১০০০+ ব্যালেন্স হয়ে গেলেই পেমেন্ট না করা পর্যন্ত আর আইডি পাঠানো যাবে না।</div>
+                            <div class="hitem"><i class="fa-solid fa-angles-right"></i> প্রতি মাসের শেষে সবার ব্যালেন্স ০ করতে হবে, যদি ৫০০ টাকার কমও হয়।</div>
+                            <div class="hitem"><i class="fa-solid fa-angles-right"></i> অনেক সময় অফিসের গুরুত্বপূর্ন কাজ থাকার কারণে সঙ্গে সঙ্গে অনুমোদন দেয়া সম্ভব হয় না। আমার Status এবং নোটিশের জন্য ওয়াটসএ্যাপ গ্রুপে জয়েন করুন: <a href="https://chat.whatsapp.com/BVlFrtfBFGD633KxKDmx9R">https://chat.whatsapp.com/BVlFrtfBFGD633KxKDmx9R</a></div>
                         </div>
                     </div>
                     <!-- Sidebar Toggle (Topbar) -->
