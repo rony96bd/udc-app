@@ -16,7 +16,8 @@
                             <tr>
                                 <th>Id</th>
                                 <th>Name</th>
-                                <th>Email</th>
+                                <th>User Name</th>
+                                <th>Approved IDs</th>
                                 <th>Rate</th>
                                 <th>Account Balance</th>
                             </tr>
@@ -34,11 +35,16 @@
                                         ->where('status', 'Approved')
                                         ->sum('taka');
                                     $balance = $paid - $total_payable;
+
+                                    $approved = App\Models\Brid::where('user_id', $usr->id)
+                                    ->where('status', 'Approved')
+                                    ->count();
                                 @endphp
                                 <tr>
                                     <td>{{ $usr->id }}</td>
                                     <td>{{ $usr->name }}</td>
                                     <td>{{ $usr->email }}</td>
+                                    <td>{{ $approved }}</td>
                                     <td>{{ $usr->rate }}</td>
                                     <td>{{ $balance }}</td>
                                 </tr>
