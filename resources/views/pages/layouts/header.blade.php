@@ -54,7 +54,7 @@
             @endphp
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item @php if($menustatus=='dashboard'){echo 'active'; }  @endphp">
+            <li class="nav-item @php if($menustatus=='dashboard'){echo 'active'; } @endphp">
                 <a class="nav-link" href="{{ URL::to('/') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>HomePage</span></a>
@@ -64,7 +64,7 @@
             <hr class="sidebar-divider">
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item @php if($menustatus=='allUser'){echo 'active'; }  @endphp">
+            <li class="nav-item @php if($menustatus=='allUser'){echo 'active'; } @endphp">
                 <a class="nav-link" href="{{ URL::to('/alluser') }}">
                     <i class="fas fa-user"></i>
                     <span>Users</span>
@@ -73,7 +73,7 @@
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item @php if($menustatus=='payinfo'){echo 'active'; }  @endphp">
+            <li class="nav-item @php if($menustatus=='payinfo'){echo 'active'; } @endphp">
                 <a class="nav-link" href="{{ URL::to('/payinfo') }}">
                     <i class="fas fa-money-bill-wave"></i>
                     <span>Payment Info</span>
@@ -102,27 +102,27 @@
 
             @php
                 $user = Auth()->user();
-
+                
                 $total_payable = App\Models\Brid::where('user_id', $user->id)
                     ->where('status', 'Approved')
                     ->sum('rate');
                 $paid = App\Models\Payment::where('user_id', $user->id)
                     ->where('status', 'Approved')
                     ->sum('taka');
-
+                
                 $balance = $paid - $total_payable;
-
+                
                 $total_payable_admin = App\Models\Brid::where('status', 'Approved')->sum('rate');
                 $paid_admin = App\Models\Payment::where('status', 'Approved')->sum('taka');
-
+                
                 $balance_admin = $total_payable_admin - $paid_admin;
-
+                
                 if ($balance < -500) {
                     $badge_color = 'danger';
                 } else {
                     $badge_color = 'success';
                 }
-
+                
             @endphp
 
             <!-- Main Content -->
@@ -132,9 +132,10 @@
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
                     <div class="hwrap">
                         <div class="hmove">
-                            <div class="hitem"><i class="fa-solid fa-angles-right"></i> ১০০০+ ব্যালেন্স হয়ে গেলেই পেমেন্ট না করা পর্যন্ত আর আইডি পাঠানো যাবে না।</div>
-                            <div class="hitem"><i class="fa-solid fa-angles-right"></i> প্রতি মাসের শেষে সবার ব্যালেন্স ০ করতে হবে, যদি ৫০০ টাকার কমও হয়।</div>
-                            <div class="hitem"><i class="fa-solid fa-angles-right"></i> অনেক সময় অফিসের গুরুত্বপূর্ন কাজ থাকার কারণে সঙ্গে সঙ্গে অনুমোদন দেয়া সম্ভব হয় না। আমার Status এবং নোটিশের জন্য ওয়াটসএ্যাপ গ্রুপে জয়েন করুন: <a href="https://chat.whatsapp.com/BVlFrtfBFGD633KxKDmx9R">https://chat.whatsapp.com/BVlFrtfBFGD633KxKDmx9R</a></div>
+                            <div class="hitem"><i class="fa-solid fa-angles-right"></i>বিকাল ৪টা থেকে রাত ৯টা পর্যন্ত
+                                কোন আইডি Approver এ না দেয়ার জন্য অনুরোধ করছি।</div>
+                            <div class="hitem"><i class="fa-solid fa-angles-right"></i></div>
+                            <div class="hitem"><i class="fa-solid fa-angles-right"></i></div>
                         </div>
                     </div>
                     <!-- Sidebar Toggle (Topbar) -->
