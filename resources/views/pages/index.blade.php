@@ -14,55 +14,53 @@
         @endif
         @php
             $user = Auth()->user();
-
+            
             $total_payable = App\Models\Brid::where('user_id', $user->id)
                 ->where('status', 'Approved')
                 ->sum('rate');
             $paid = App\Models\Payment::where('user_id', $user->id)
                 ->where('status', 'Approved')
                 ->sum('taka');
-
+            
             $balance = $paid - $total_payable;
-
+            
             $total_payable_admin = App\Models\Brid::where('status', 'Approved')->sum('rate');
             $paid_admin = App\Models\Payment::where('status', 'Approved')->sum('taka');
-
+            
             $balance_admin = $total_payable_admin - $paid_admin;
-
+            
             if ($balance < -500) {
                 $badge_color = 'danger';
             } else {
                 $badge_color = 'success';
             }
-
+            
             if ($user->is_admin == '0') {
                 $payments_date = DB::table('payments')
                     ->where('user_id', $user->id)
                     ->orderBy('created_at', 'DESC')
                     ->first(['created_at']);
-
-
-                    $last_pay_day = strtotime($payments_date->created_at ?? '2022-01-01');
-
-
+            
+                $last_pay_day = strtotime($payments_date->created_at ?? '2022-01-01');
+            
                 $now = time();
                 $datediff = $now - $last_pay_day;
-
+            
                 $day_diff = round($datediff / (60 * 60 * 24));
-
+            
                 if ($balance < -500 && $day_diff > 7) {
                     $autofocus = '';
                 } else {
                     $autofocus = 'autofocus = "on"';
                 }
-
-                if ($balance < -1000) {
+            
+                if ($balance < -1) {
                     $div_disable = 'display:none';
                 } else {
                     $div_disable = '';
                 }
             }
-
+            
         @endphp
 
         <!-- Content Row -->
@@ -274,9 +272,9 @@
                                     {{ date('d-m-Y H:i:s', strtotime($brId->created_at)) }}</td>
                                 <td style="vertical-align: middle;">
                                     <span id="{{ $brId->brid }}">{{ $brId->brid }}</span>
-                                    <button class="badge badge-counter btn btn-primary"
-                                        data-desc-ref="{{ $brId->brid }}" type="button" value="Copy"
-                                        id="btn" onclick="status(this)"><i class="fas fa-copy fa-sm"></i></button>
+                                    <button class="badge badge-counter btn btn-primary" data-desc-ref="{{ $brId->brid }}"
+                                        type="button" value="Copy" id="btn" onclick="status(this)"><i
+                                            class="fas fa-copy fa-sm"></i></button>
                                 </td>
                                 @switch($brId->status)
                                     @case('Approved')
@@ -339,8 +337,8 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <p>যাদের ব্যালেন্স ১০০০+ হয়ে গেছে। তাদের আইডি পাঠানো ডিসেবল করা হচ্ছে।</p>
-                    <h3>দয়া করে পেমেন্ট করুন</h3>
+                    <p>ওয়ালেট রিচার্জ করে আপনার আইডি প্রেরণ করুন।</p>
+                    <h3>দয়া করে এড পেমেন্ট করুন</h3>
                 </div>
             </div>
         </div>

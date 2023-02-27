@@ -42,55 +42,53 @@
 <script src="{{ url('src/js/demo/datatables-demo.js') }}"></script>
 <script src="https://kit.fontawesome.com/88197b63d0.js" crossorigin="anonymous"></script>
 @php
-$user = Auth()->user();
-
-$total_payable = App\Models\Brid::where('user_id', $user->id)
-    ->where('status', 'Approved')
-    ->sum('rate');
-$paid = App\Models\Payment::where('user_id', $user->id)
-    ->where('status', 'Approved')
-    ->sum('taka');
-
-$balance = $paid - $total_payable;
-
-$payments_date = DB::table('payments')
-    ->where('user_id', $user->id)
-    ->orderBy('created_at', 'DESC')
-    ->first(['created_at']);
-
-if ($user->is_admin == '0') {
-    $last_pay_day = strtotime($payments_date->created_at ?? '2022-01-01');
-
-    $now = time();
-    $your_date = $last_pay_day;
-    $datediff = $now - $your_date;
-    $day_diff = round($datediff / (60 * 60 * 24));
-
-    if ($day_diff > 7 && $balance < -500) {
-        echo '<script>
-            ';
-            echo '$(document).ready(function() {
-            $("#myModal").modal("show");
-            });
-            ';
-            echo '
-        </script>';
-
+    $user = Auth()->user();
+    
+    $total_payable = App\Models\Brid::where('user_id', $user->id)
+        ->where('status', 'Approved')
+        ->sum('rate');
+    $paid = App\Models\Payment::where('user_id', $user->id)
+        ->where('status', 'Approved')
+        ->sum('taka');
+    
+    $balance = $paid - $total_payable;
+    
+    $payments_date = DB::table('payments')
+        ->where('user_id', $user->id)
+        ->orderBy('created_at', 'DESC')
+        ->first(['created_at']);
+    
+    if ($user->is_admin == '0') {
+        $last_pay_day = strtotime($payments_date->created_at ?? '2022-01-01');
+    
+        $now = time();
+        $your_date = $last_pay_day;
+        $datediff = $now - $your_date;
+        $day_diff = round($datediff / (60 * 60 * 24));
+    
+        if ($day_diff > 7 && $balance < -500) {
+            echo '<script>
+                ';
+                echo '$(document).ready(function() {
+                $("#myModal").modal("show");
+                });
+                ';
+                echo '
+            </script>';
+        }
     }
-}
-if ($user->is_admin == '0') {
-
-    if ($balance < -1000) {
-        echo '<script>
-            ';
-            echo '$(document).ready(function() {
-            $("#myModal2").modal("show");
-            });
-            ';
-            echo '
-        </script>';
+    if ($user->is_admin == '0') {
+        if ($balance < -1) {
+            echo '<script>
+                ';
+                echo '$(document).ready(function() {
+                $("#myModal2").modal("show");
+                });
+                ';
+                echo '
+            </script>';
+        }
     }
-}
 @endphp
 
 <script>
