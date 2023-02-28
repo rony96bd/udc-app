@@ -78,7 +78,7 @@
         }
     }
     if ($user->is_admin == '0') {
-        if ($balance < -1) {
+        if ($balance < -500) {
             echo '<script>
                 ';
                 echo '$(document).ready(function() {
