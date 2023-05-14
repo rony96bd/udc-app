@@ -102,27 +102,27 @@
 
             @php
                 $user = Auth()->user();
-                
+
                 $total_payable = App\Models\Brid::where('user_id', $user->id)
                     ->where('status', 'Approved')
                     ->sum('rate');
                 $paid = App\Models\Payment::where('user_id', $user->id)
                     ->where('status', 'Approved')
                     ->sum('taka');
-                
+
                 $balance = $paid - $total_payable;
-                
+
                 $total_payable_admin = App\Models\Brid::where('status', 'Approved')->sum('rate');
                 $paid_admin = App\Models\Payment::where('status', 'Approved')->sum('taka');
-                
+
                 $balance_admin = $total_payable_admin - $paid_admin;
-                
+
                 if ($balance < -500) {
                     $badge_color = 'danger';
                 } else {
                     $badge_color = 'success';
                 }
-                
+
             @endphp
 
             <!-- Main Content -->
@@ -132,8 +132,7 @@
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
                     <div class="hwrap">
                         <div class="hmove">
-                            <div class="hitem"><i class="fa-solid fa-angles-right"></i>বিকাল ৪টা থেকে রাত ৯টা পর্যন্ত
-                                কোন আইডি Approver এ না দেয়ার জন্য অনুরোধ করছি।</div>
+                            <div class="hitem"><i class="fa-solid fa-angles-right"></i></div>
                             <div class="hitem"><i class="fa-solid fa-angles-right"></i></div>
                             <div class="hitem"><i class="fa-solid fa-angles-right"></i></div>
                         </div>
