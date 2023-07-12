@@ -20,6 +20,7 @@ Route::get('users/{id}', function ($id) {
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
+    Route::get('/alldata', [HomeController::class, 'alldata'])->name('alldata');
     Route::get('/alluser', [UserController::class, 'index'])->name('allUser');
     Route::get('/payinfo', [PayController::class, 'index'])->name('payinfo');
     Route::post('/add', [HomeController::class, 'addData'])->name('addBr');

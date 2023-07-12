@@ -22,6 +22,22 @@ class HomeController extends Controller
 
         if ($user->is_admin == 1) {
             $brIds = Brid::join('users', 'users.id', '=', 'brids.user_id')
+                ->where('status', 'Pending')
+                ->get(['brids.*', 'users.name', 'users.email']);
+        } else {
+            $brIds = Brid::where('user_id', $user->id )
+            ->where('status', 'Pending')
+            ->get();
+        }
+
+        return view('pages.index', compact(['brIds', 'user']));
+    }
+    public function alldata()
+    {
+        $user = Auth()->user();
+
+        if ($user->is_admin == 1) {
+            $brIds = Brid::join('users', 'users.id', '=', 'brids.user_id')
                 ->get(['brids.*', 'users.name', 'users.email']);
         } else {
             $brIds = Brid::where('user_id', $user->id)->get();

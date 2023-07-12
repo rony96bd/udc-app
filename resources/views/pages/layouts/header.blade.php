@@ -64,6 +64,23 @@
             <hr class="sidebar-divider">
 
             <!-- Nav Item - Pages Collapse Menu -->
+            @if ($user->is_admin == '1')
+            <li class="nav-item @php if($menustatus=='allUser'){echo 'active'; } @endphp">
+                <a class="nav-link" href="{{ URL::to('/alldata') }}">
+                    <i class="fas fa-database"></i>
+                    <span>All BRID</span>
+                </a>
+            </li>
+            @endif
+            @if ($user->is_admin == '0')
+            <li class="nav-item @php if($menustatus=='allUser'){echo 'active'; } @endphp">
+                <a class="nav-link" href="{{ URL::to('/alldata') }}">
+                    <i class="fas fa-database"></i>
+                    <span>All BRID</span>
+                </a>
+            </li>
+            @endif
+
             <li class="nav-item @php if($menustatus=='allUser'){echo 'active'; } @endphp">
                 <a class="nav-link" href="{{ URL::to('/alluser') }}">
                     <i class="fas fa-user"></i>
