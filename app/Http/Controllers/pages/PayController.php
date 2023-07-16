@@ -47,7 +47,8 @@ class PayController extends Controller
 
     public function paymentShow()
     {
-        return view('pages.add-payment');
+        $user = Auth()->user();
+        return view('pages.add-payment', compact(['user']));
     }
     function updatePayment (Request $reqp)
     {
