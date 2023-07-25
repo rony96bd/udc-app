@@ -210,8 +210,7 @@
                                                     {{ $brId->message }}
                                                 @endif
                                                 @if ($user->is_admin == '1')
-                                                    <textarea name="message" class="form-control" rows="1">{{ $brId->message }}</textarea>
-                                                @endif
+                                                {{ $brId->message }}                                                @endif
                                             </td>
                                             @if ($user->is_admin == '1')
                                                 <td style="vertical-align: middle;">
