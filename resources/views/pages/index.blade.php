@@ -14,53 +14,53 @@
         @endif
         @php
             $user = Auth()->user();
-            
+
             $total_payable = App\Models\Brid::where('user_id', $user->id)
                 ->where('status', 'Approved')
                 ->sum('rate');
             $paid = App\Models\Payment::where('user_id', $user->id)
                 ->where('status', 'Approved')
                 ->sum('taka');
-            
+
             $balance = $paid - $total_payable;
-            
+
             $total_payable_admin = App\Models\Brid::where('status', 'Approved')->sum('rate');
             $paid_admin = App\Models\Payment::where('status', 'Approved')->sum('taka');
-            
+
             $balance_admin = $total_payable_admin - $paid_admin;
-            
+
             if ($balance < -500) {
                 $badge_color = 'danger';
             } else {
                 $badge_color = 'success';
             }
-            
+
             if ($user->is_admin == '0') {
                 $payments_date = DB::table('payments')
                     ->where('user_id', $user->id)
                     ->orderBy('created_at', 'DESC')
                     ->first(['created_at']);
-            
+
                 $last_pay_day = strtotime($payments_date->created_at ?? '2022-01-01');
-            
+
                 $now = time();
                 $datediff = $now - $last_pay_day;
-            
+
                 $day_diff = round($datediff / (60 * 60 * 24));
-            
+
                 if ($balance < -500 && $day_diff > 7) {
                     $autofocus = '';
                 } else {
                     $autofocus = 'autofocus = "on"';
                 }
-            
+
                 if ($balance < -500) {
                     $div_disable = 'display:none';
                 } else {
                     $div_disable = '';
                 }
             }
-            
+
         @endphp
 
         <!-- Content Row -->
@@ -177,6 +177,7 @@
                                         <form action="{{ Route('updBr') }}" method="POST">
                                             @csrf
                                             <input type="hidden" name="id" value="{{ $brId->id }}" />
+                                            <input name="rate" type="hidden" value="{{ $brId->rate }}" />
                                             <td style="vertical-align: middle; color: {{ $txtcol }};" align="center">
                                                 @if ($user->is_admin == '0')
                                                     {{ $brId->status }}
@@ -205,6 +206,7 @@
                                                         <option>DoB Correction</option>
                                                     </select>
                                                 @endif
+
                                             </td>
 
                                             {{-- <td style="vertical-align: middle; width: 56px;" align="center">
