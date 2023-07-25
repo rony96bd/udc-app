@@ -43,7 +43,7 @@ class HomeController extends Controller
             $brIds = Brid::where('user_id', $user->id)->get();
         }
 
-        return view('pages.index', compact(['brIds', 'user']));
+        return view('pages.alldata', compact(['brIds', 'user']));
     }
 
     function addData(Request $req)
