@@ -141,7 +141,7 @@
                                     <th>Message</th>
                                     @if ($user->is_admin == '1')
                                         <th>Requested</th>
-                                        <th>Action</th>
+                                        {{-- <th>Action</th> --}}
                                     @endif
                                 </tr>
                             </thead>
@@ -176,21 +176,13 @@
 
                                         <form action="{{ Route('updBr') }}" method="POST">
                                             @csrf
-                                            <input type="hidden" name="id" value="{{ $brId->id }}" />
                                             <td style="vertical-align: middle; color: {{ $txtcol }};" align="center">
                                                 @if ($user->is_admin == '0')
                                                     {{ $brId->status }}
                                                 @endif
 
                                                 @if ($user->is_admin == '1')
-                                                    <select style="color: {{ $txtcol }};" name="status"
-                                                        onchange='if(this.value != 0) { this.form.submit(); }'
-                                                        class="form-select center">
-                                                        <option>{{ $brId->status }}</option>
-                                                        <option style="color: rgb(9, 214, 9);">Approved</option>
-                                                        <option style="color: red;">Reject</option>
-                                                        <option style="color: blue;">Pending</option>
-                                                    </select>
+                                                {{ $brId->status }}
                                                 @endif
                                             </td>
 
@@ -199,11 +191,7 @@
                                                     {{ $brId->id_type }}
                                                 @endif
                                                 @if ($user->is_admin == '1')
-                                                    <select name="id_type" class="form-select center">
-                                                        <option>{{ $brId->id_type }}</option>
-                                                        <option>Regular</option>
-                                                        <option>DoB Correction</option>
-                                                    </select>
+                                                {{ $brId->id_type }}
                                                 @endif
                                             </td>
 
@@ -230,7 +218,7 @@
                                                     {{-- <span>{{ $brId->name }}</span><br> --}}
                                                     <span>{{ $brId->email }}</span>
                                                 </td>
-                                                <td class="d-flex justify-content-between" style="vertical-align: middle;">
+                                                {{-- <td class="d-flex justify-content-between" style="vertical-align: middle;">
                                                     <span> <button type="submit" class="btn btn-primary btn-sm"><i
                                                                 class="fas fa-save"></i></button> </span>
                                         </form>
@@ -241,7 +229,7 @@
                                                         class="fas fa-trash"></i>
                                                 </button></span>
                                         </form>
-                                        </td>
+                                        </td> --}}
                                 @endif
                                 </tr>
             @endforeach
