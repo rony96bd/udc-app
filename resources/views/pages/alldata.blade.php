@@ -106,26 +106,6 @@
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
-            <div class="card-header py-3">
-                <h4 style="float: left" class="m-0 font-weight-bold text-primary">Results</h4>
-                @if ($user->is_admin == '1')
-                    <div style="float: right">
-                        <span><button type="button" class="btn btn-success" id="exampleApprove">
-                                Approve
-                            </button></span>
-                        <span>
-                            <button type="button" class="btn btn-danger" id="exampleReject">
-                                Reject
-                            </button>
-                        </span>
-                        <span>
-                            <button type="button" class="btn btn-danger" id="exampleDelete">
-                                Delete
-                            </button>
-                        </span>
-                    </div>
-                @endif
-            </div>
             <!-- Admin Table -->
             @if ($user->is_admin == '1')
                 <div class="card-body">
