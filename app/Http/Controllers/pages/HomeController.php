@@ -116,7 +116,9 @@ class HomeController extends Controller
 
     public function changePassword()
     {
-        return view('pages.change-password');
+        $user = Auth()->user();
+
+        return view('pages.change-password')->with('user', $user);
     }
 
     public function updatePassword(Request $request)
