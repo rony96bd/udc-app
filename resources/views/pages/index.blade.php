@@ -48,13 +48,13 @@
 
                 $day_diff = round($datediff / (60 * 60 * 24));
 
-                if ($balance < $day_diff > 7) {
+                if ($day_diff > 7) {
                     $autofocus = '';
                 } else {
                     $autofocus = 'autofocus = "on"';
                 }
 
-                if ($balance < $day_diff > 7) {
+                if ($day_diff > 7) {
                     $div_disable = 'display:none';
                 } else {
                     $div_disable = '';
