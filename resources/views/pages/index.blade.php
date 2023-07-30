@@ -29,7 +29,7 @@
 
             $balance_admin = $total_payable_admin - $paid_admin;
 
-            if ($balance < -500) {
+            if ($balance < -50) {
                 $badge_color = 'danger';
             } else {
                 $badge_color = 'success';
@@ -48,13 +48,13 @@
 
                 $day_diff = round($datediff / (60 * 60 * 24));
 
-                if ($day_diff > 9) {
+                if ($balance < -50 && $day_diff > 9) {
                     $autofocus = '';
                 } else {
                     $autofocus = 'autofocus = "on"';
                 }
 
-                if ($day_diff > 9) {
+                if ($balance < -50 && $day_diff > 9) {
                     $div_disable = 'display:none';
                 } else {
                     $div_disable = '';
