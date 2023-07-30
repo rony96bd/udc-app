@@ -66,7 +66,7 @@
         $datediff = $now - $your_date;
         $day_diff = round($datediff / (60 * 60 * 24));
 
-        if ($day_diff > 7 && $balance < -500) {
+        if ($day_diff > 7) {
             echo '<script>
                 ';
                 echo '$(document).ready(function() {

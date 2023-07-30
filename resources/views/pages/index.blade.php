@@ -325,7 +325,7 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <p>ব্যালেন্স ৫০০+ এবং ৮ দিনের মধ্যে কোন পেমেন্ট করেননি</p>
+                    <p>৮ দিনের মধ্যে কোন পেমেন্ট করেননি</p>
                     <h3>দয়া করে পেমেন্ট করুন</h3>
                 </div>
             </div>
