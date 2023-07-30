@@ -48,13 +48,13 @@
 
                 $day_diff = round($datediff / (60 * 60 * 24));
 
-                if ($day_diff > 7) {
+                if ($day_diff > 9) {
                     $autofocus = '';
                 } else {
                     $autofocus = 'autofocus = "on"';
                 }
 
-                if ($day_diff > 7) {
+                if ($day_diff > 9) {
                     $div_disable = 'display:none';
                 } else {
                     $div_disable = '';
@@ -325,7 +325,7 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <p>৮ দিনের মধ্যে কোন পেমেন্ট করেননি</p>
+                    <p>১০ দিনের মধ্যে কোন পেমেন্ট করেননি</p>
                     <h3>দয়া করে পেমেন্ট করুন</h3>
                 </div>
             </div>
