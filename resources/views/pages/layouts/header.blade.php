@@ -149,7 +149,7 @@
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
                     <div class="hwrap">
                         <div class="hmove">
-                            <div class="hitem"><i class="fa-solid fa-angles-right"></i></div>
+                            <div class="hitem"><i class="fa-solid fa-angles-right"> প্রতি সপ্তাহে পেমেন্ট ক্লিয়ার করুন।</i></div>
                             <div class="hitem"><i class="fa-solid fa-angles-right"></i></div>
                             <div class="hitem"><i class="fa-solid fa-angles-right"></i></div>
                         </div>
