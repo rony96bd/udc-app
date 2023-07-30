@@ -54,7 +54,7 @@
                     $autofocus = 'autofocus = "on"';
                 }
 
-                if ($balance < -500) {
+                if ($balance < -500 && $day_diff > 7) {
                     $div_disable = 'display:none';
                 } else {
                     $div_disable = '';
