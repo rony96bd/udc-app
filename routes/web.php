@@ -24,7 +24,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/alluser', [UserController::class, 'index'])->name('allUser');
     Route::get('/payinfo', [PayController::class, 'index'])->name('payinfo');
     Route::post('/add', [HomeController::class, 'addData'])->name('addBr');
-    Route::post('/add', [HomeController::class, 'addDataAdmin'])->name('addBrAdmin');
+    Route::post('/addadmin', [HomeController::class, 'addDataAdmin'])->name('addBrAdmin');
     Route::post('/reject_all', [HomeController::class, 'rejectAll'])->name('rejectAll');
     Route::post('/approve_all', [HomeController::class, 'approveAll'])->name('approveAll');
     Route::post('/delete_all', [HomeController::class, 'deleteAll'])->name('deleteAll');
