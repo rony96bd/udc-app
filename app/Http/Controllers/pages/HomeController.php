@@ -68,6 +68,29 @@ class HomeController extends Controller
             return Redirect::back()->with('message', 'Brid added successfully');
         }
     }
+    function addDataAdmin(Request $req)
+    {
+        $user_id = $req->user_id;
+        $brid = Brid::where('brid', $req->brid)->first();
+        $user_rate = User::where('users.id', $user_id)->value('users.rate');
+
+        if ($brid) {
+            if ($brid->user_id == $user_id) {
+                return Redirect::back()->with('message', 'Duplicate BRID Found.');
+            } else {
+                return Redirect::back()->with('message', 'This brid is already in use');
+            }
+        } else {
+            Brid::firstOrCreate([
+                'brid' => $req->brid,
+                'user_id' => $req->user_id,
+                'status' => "Pending",
+                'id_type' => "General",
+                'rate' => $user_rate,
+            ]);
+            return Redirect::back()->with('message', 'Brid added successfully');
+        }
+    }
 
     function updateData(Request $req)
     {

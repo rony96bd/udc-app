@@ -100,6 +100,48 @@
 
                 </div>
             @endif
+            @if ($user->is_admin == '1')
+                <div class="col-xl-12 col-md-6 mb-4">
+
+                    <div class="card border-left-primary shadow h-100 py-2">
+
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs text-center font-weight-bold text-primary text-uppercase mb-1">
+                                        Send ID's
+                                    </div>
+                                    <div class="text-center h5 mb-0 font-weight-bold text-gray-800">
+                                        <form action="{{ Route('addBrAdmin') }}" method="POST"
+                                            class="d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                                            @csrf
+                                            <div class="input-group">
+                                                <input name="brid" type="text"
+                                                    class="form-control bg-light border-0 small" placeholder="Write ID"
+                                                    aria-label="Send ID" aria-describedby="basic-addon2">
+                                                @php
+                                                    $users = App\Models\User::all();
+                                                @endphp
+                                                <select class="form-control bg-light border-0 small" name="user_id" id="user_id">
+                                                    @foreach ($users as $usr)
+                                                        <option value="{{ $usr->id }}">{{ $usr->email }}</option>
+                                                    @endforeach
+                                                </select>
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-primary" type="submit">
+                                                        <i class="fas fa-paper-plane fa-sm"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            @endif
         </div>
 
         <!-- Page Heading -->
@@ -232,7 +274,8 @@
                                                     {{-- <span>{{ $brId->name }}</span><br> --}}
                                                     <span>{{ $brId->email }}</span>
                                                 </td>
-                                                <td class="d-flex justify-content-between" style="vertical-align: middle;">
+                                                <td class="d-flex justify-content-between"
+                                                    style="vertical-align: middle;">
                                                     <span> <button type="submit" class="btn btn-primary btn-sm"><i
                                                                 class="fas fa-save"></i></button> </span>
                                         </form>
@@ -274,9 +317,9 @@
                                     {{ date('d-m-Y H:i:s', strtotime($brId->created_at)) }}</td>
                                 <td style="vertical-align: middle;">
                                     <span id="{{ $brId->brid }}">{{ $brId->brid }}</span>
-                                    <button class="badge badge-counter btn btn-primary" data-desc-ref="{{ $brId->brid }}"
-                                        type="button" value="Copy" id="btn" onclick="status(this)"><i
-                                            class="fas fa-copy fa-sm"></i></button>
+                                    <button class="badge badge-counter btn btn-primary"
+                                        data-desc-ref="{{ $brId->brid }}" type="button" value="Copy"
+                                        id="btn" onclick="status(this)"><i class="fas fa-copy fa-sm"></i></button>
                                 </td>
                                 @switch($brId->status)
                                     @case('Approved')
