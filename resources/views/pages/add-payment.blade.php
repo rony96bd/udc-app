@@ -4,6 +4,11 @@
     <div class="container">
 
         {{--                @if($user->is_admin ==0)--}}
+        @if (session()->has('error'))
+            <div class="alert alert-danger">
+                {{ session()->get('error') }}
+            </div>
+            @endif
         <div class="d-flex justify-content-center">
             <div class="col-xl-6 col-md-6 mb-4">
                 <div class="card shadow mb-4">
@@ -17,11 +22,24 @@
                                     @csrf
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Amount (Taka)</label>
-                                        <input type="text" name="taka" class="form-control" id="taka" placeholder="Enter Amount">
+                                        <input type="number" name="taka" class="form-control" id="taka" placeholder="Enter Amount">
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleInputPassword1">Transection ID/Mobile No.</label>
-                                        <input type="text" class="form-control" name="trid" id="trid" placeholder="Enter Transection ID/Mobile No.">
+                                        <label for="PaymentMethod">Payment Method</label>
+                                        <select id="paymethod" name="paymethod" class="custom-select form-control">
+                                            <option value="bkash">Bkash</option>
+                                            <option value="nagad">Nagad</option>
+                                            <option value="rocket">Rocket</option>
+                                            <option value="cash">Cash</option>
+                                          </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Transaction">Transection ID</label>
+                                        <input type="text" class="form-control" name="trid" id="trid" placeholder="Enter Transection ID">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Mobile">Mobile No.</label>
+                                        <input type="text" class="form-control" name="mobile" id="mobile" placeholder="Enter Mobile No.">
                                     </div>
                                     <div class="d-flex justify-content-center">
                                         <button type="submit" class="btn btn-primary">Send</button>
@@ -30,8 +48,7 @@
                             </div>
                         </div>
                     </div>
-                    <div style="color: red; text-align: center;"><i class="fa-solid fa-angles-right"></i> পেমেন্ট করে অবশ্যই ঐ দিনই Approver Software এ Add Payment করতে হবে।</div>
-                    <div style="color: red; text-align: center;"><i class="fa-solid fa-angles-right"></i> Add Payment এ টাকার পরিমাণ ও যে মোবাইল নম্বর দিয়ে বিকাশ/নগদ করেছেন অবশ্যই সেই নম্বরটি অথবা Transaction ID দিতে হবে।</div>
+                    <div style="color: red; text-align: center;"><i class="fa-solid fa-angles-right"></i> পেমেন্ট করে অবশ্যই Transantion ID, টাকার পরিমাণ ও মোবাইল নম্বর সঠিক দিতে হবে। </div>
                 </div>
             </div>
         </div>

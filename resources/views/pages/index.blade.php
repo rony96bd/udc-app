@@ -67,7 +67,7 @@
         <div class="row">
             <!-- ID Send Card -->
             @if ($user->is_admin == '0')
-                <div class="col-xl-12 col-md-6 mb-4">
+                <div class="col-xl-12 col-md-12 mb-12">
 
                     <div class="card border-left-primary shadow h-100 py-2">
 
@@ -83,7 +83,7 @@
                                             @csrf
                                             <div class="input-group" style={{ $div_disable }}>
                                                 <input name="brid" type="text" {{ $autofocus }}
-                                                    class="form-control bg-light border-0 small" placeholder="Write ID"
+                                                    class="form-control bg-light border-0 small" placeholder="Write BRID or BRN"
                                                     aria-label="Send ID" aria-describedby="basic-addon2">
                                                 <div class="input-group-append">
                                                     <button class="btn btn-primary" type="submit">
@@ -176,7 +176,7 @@
                             <thead>
                                 <tr>
                                     <th>Date</th>
-                                    <th>BR Applicatin ID</th>
+                                    <th>BRID or BRN</th>
                                     <th>Status</th>
                                     <th>ID Type</th>
                                     {{-- <th style="width: 56px;">Rate</th> --}}
@@ -263,7 +263,7 @@
 
                                             <td style="vertical-align: middle;" align="center">
                                                 @if ($user->is_admin == '0')
-                                                    {{ $brId->message }}
+                                                <textarea name="message" class="form-control" rows="1">{{ $brId->message }}</textarea>
                                                 @endif
                                                 @if ($user->is_admin == '1')
                                                     <textarea name="message" class="form-control" rows="1">{{ $brId->message }}</textarea>
@@ -303,11 +303,12 @@
                     <thead>
                         <tr>
                             <th>Date</th>
-                            <th>BR Applicatin ID</th>
+                            <th>BRID or BRN</th>
                             <th>Status</th>
                             <th>ID Type</th>
                             <th style="width: 56px;">Rate</th>
                             <th>Message</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -346,8 +347,16 @@
                                 <td style="vertical-align: middle; width: 56px;" align="center">
                                     {{ $brId->rate }}
                                 </td>
+                                <form action="{{ Route('updBrUdc') }}" method="POST">
+                                    @csrf
+                                <input type="hidden" name="id" value="{{ $brId->id }}" />
                                 <td style="vertical-align: middle;" align="center">
-                                    {{ $brId->message }}
+                                    <textarea name="message" placeholder="মন্তব্য/জন্ম তারিখ/মোবাইল নম্বর" class="form-control" rows="1">{{ $brId->message }}</textarea>
+                                </td>
+                                <td class="d-flex justify-content-between" style="vertical-align: middle;">
+                                    <span>
+                                        <button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-save"></i></button>
+                                    </span></form>
                                 </td>
                             </tr>
                         @endforeach

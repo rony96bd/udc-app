@@ -140,6 +140,12 @@
             ],
         });
 
+        $('#transaction-table').DataTable({
+            order: [
+                [0, 'desc']
+            ],
+        });
+
         // Activate the 'selected' class
         // on clicking the rows
         $('#example tbody').on('click', 'tr', function() {

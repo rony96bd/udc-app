@@ -29,6 +29,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/approve_all', [HomeController::class, 'approveAll'])->name('approveAll');
     Route::post('/delete_all', [HomeController::class, 'deleteAll'])->name('deleteAll');
     Route::post('/update', [HomeController::class, 'updateData'])->name('updBr');
+    Route::post('/updateudc', [HomeController::class, 'updateDataUdc'])->name('updBrUdc');
     Route::delete('/delete_br/{id}', [HomeController::class, 'deleteData'])->name('deleteBr');
     Route::get('/change-password', [HomeController::class, 'changePassword'])->name('change-password');
     Route::post('/change-password', [HomeController::class, 'updatePassword'])->name('update-password');
@@ -36,6 +37,12 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/add-payment', [PayController::class, 'addPayment'])->name('add-payment');
     Route::post('/update-payment', [PayController::class, 'updatePayment'])->name('update-payment');
     Route::post('/update-status', [PayController::class, 'updateStatus'])->name('update-status');
+    
+    Route::post('/earn', [HomeController::class, 'earn'])->name('earn');
+    Route::get('/earn', [HomeController::class, 'earn'])->name('earn-view');
+    
+    Route::post('/transaction_id', [HomeController::class, 'transaction_add'])->name('transaction_add');
+    Route::get('/transaction_id', [HomeController::class, 'transaction_view'])->name('transaction_view');
 });
 
 

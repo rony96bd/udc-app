@@ -13,6 +13,7 @@ class Payment extends Model
         'user_id',
         'taka',
         'transaction_id',
+        'mobile',
         'status',
     ];
 }

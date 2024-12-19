@@ -1,6 +1,18 @@
 @extends('pages.layouts.main')
 @section('main-container')
     <!-- Begin Page Content -->
+    @if (session()->has('message'))
+        <div class="alert alert-success">
+            {{ session()->get('message') }}
+        </div>
+    @endif
+
+    @if (session()->has('danger'))
+        <div class="alert alert-danger">
+            {{ session()->get('danger') }}
+        </div>
+    @endif
+    
     <div class="container-fluid">
 
         <!-- DataTales For Payment -->
@@ -13,6 +25,7 @@
                     </button>
                 </a>
             </div>
+            
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -22,6 +35,7 @@
                             <th>Paid By</th>
                             <th>Taka</th>
                             <th>Transaction Id</th>
+                            <th>Mobile No.</th>
                             <th>Status</th>
                             @if ($user->is_admin == '1')
                                 <th>Action</th>
@@ -60,6 +74,7 @@
                                 <td>{{ $payment->name }} ({{ $payment->email }})</td>
                                 <td>{{ $payment->taka }}</td>
                                 <td>{{ $payment->transaction_id }}</td>
+                                <td>{{ $payment->mobile }}</td>
                                 <form action="{{ Route('update-payment') }}" method="POST">
                                     @csrf
                                     <input type="hidden" name="id" value="{{ $payment->id }}"/>

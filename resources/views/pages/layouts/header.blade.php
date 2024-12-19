@@ -1,3 +1,8 @@
+@php
+$brId_count = App\Models\Brid::join('users', 'users.id', '=', 'brids.user_id')
+                ->where('status', 'Pending')
+                ->get(['brids.*', 'users.name', 'users.email'])->count();
+@endphp
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,6 +33,18 @@
         .selected {
             background-color: #e8e8e8;
         }
+        a.homelink:after {
+            content: "{{$brId_count}}";
+            background-color: green;
+            font-size: 9px;
+            border-radius: 50%;
+            position: absolute;
+            width: 20px;
+            height: 18px;
+            padding-top: 3px;
+            text-align: center;
+        }
+        
     </style>
 </head>
 
@@ -55,7 +72,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item @php if($menustatus=='dashboard'){echo 'active'; } @endphp">
-                <a class="nav-link" href="{{ URL::to('/') }}">
+                <a class="nav-link homelink" href="{{ URL::to('/') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>HomePage</span></a>
             </li>
@@ -88,6 +105,16 @@
                 </a>
 
             </li>
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            @if ($user->is_admin == '1')
+            <li class="nav-item @php if($menustatus=='transaction_id'){echo 'active'; } @endphp">
+                <a class="nav-link" href="{{ URL::to('/transaction_id') }}">
+                    <i class="fas fa-tasks"></i>
+                    <span>Add Transection ID's</span>
+                </a>
+            </li>
+            @endif
 
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item @php if($menustatus=='payinfo'){echo 'active'; } @endphp">
@@ -149,9 +176,9 @@
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
                     <div class="hwrap">
                         <div class="hmove">
-                            <div class="hitem"><i class="fa-solid fa-angles-right"> প্রতি সপ্তাহে পেমেন্ট ক্লিয়ার করুন।</i></div>
-                            <div class="hitem"><i class="fa-solid fa-angles-right"></i></div>
-                            <div class="hitem"><i class="fa-solid fa-angles-right"></i></div>
+                            <div class="hitem"><i class="fa-solid fa-angles-right"></i> Approver ছাড়া মেসেন্জার আইডি না দেয়ার জন্য অনুরোধ করছি। </div>
+                            <div class="hitem"><i class="fa-solid fa-angles-right"></i> আইডি সচল রাখার জন্য অগ্রীম পেমেন্ট করে ব্যালেন্স এড করে রাখতে হবে। </div>
+                            <div class="hitem"><i class="fa-solid fa-angles-right"></i> * * * ধন্যবাদ * * * <i class="fa-solid fa-angles-left"></i></div>
                         </div>
                     </div>
                     <!-- Sidebar Toggle (Topbar) -->

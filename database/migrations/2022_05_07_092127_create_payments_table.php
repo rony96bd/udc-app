@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->integer('user_id');
             $table->integer('taka');
+            $table->string('mob_num');
             $table->string('transaction_id');
             $table->string('status');
             $table->timestamps();

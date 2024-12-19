@@ -10,9 +10,11 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Models\Brid;
 use App\Models\Payment;
+use App\Models\Transaction;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Hash;
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -113,6 +115,17 @@ class HomeController extends Controller
             $log->user_agent = $req->header('User-Agent');
             event(new LogListener($log));
         }
+
+        return Redirect::route('dashboard');
+        // return redirect()->back();
+    }
+
+    function updateDataUdc(Request $req)
+    {
+        $brids = Brid::findOrFail($req->id);
+        $brids->message = $req->message;
+        $brids->rate = "20";
+        $brids->save();
 
         return Redirect::route('dashboard');
         // return redirect()->back();
@@ -258,5 +271,40 @@ class HomeController extends Controller
             $brid->delete();
         }
         return response()->json(['status' => 'success', 'message' => 'All ids deleted successfully']);
+    }
+
+    public function earn (Request $request){
+        $date_to = new Carbon($request->date1);
+        $date_from = new Carbon($request->date2);
+        $user = Auth()->user();
+        $earn = Payment::where('status', 'Approved')
+        ->whereBetween('created_at', [$date_to->format('Y-m-d')." 00:00:00", $date_from->format('Y-m-d')." 23:59:59"])
+        ->sum('taka');
+
+        return view('pages.earn', compact(['user', 'earn', 'date_to', 'date_from']));
+    }
+
+    public function transaction_view (){
+        $user = Auth()->user();
+        $transactions = Transaction::get();
+        return view('pages.transaction', compact(['user', 'transactions']));
+    }
+
+    public function transaction_add (Request $request){
+
+        $user = Auth()->user();
+        $transaction = Transaction::where('transaction_id', $request->transaction)->first();
+
+        if ($transaction) {
+                return Redirect::back()->with('danger', 'Duplicate Transaction ID Found.');
+            } else {
+            Transaction::firstOrCreate([
+                'transaction_id' => $request->transaction,
+                'taka' => $request->taka,
+                'status' => "Pending",
+                'mobile' => "",
+            ]);
+            return Redirect::back()->with('message', 'Transaction ID Added successfully');
+        }
     }
 }

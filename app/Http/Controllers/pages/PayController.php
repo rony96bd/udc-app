@@ -5,8 +5,10 @@ namespace App\Http\Controllers\pages;
 use App\Http\Controllers\Controller;
 use App\Models\Brid;
 use App\Models\Payment;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\DB;
 
 class PayController extends Controller
 {
@@ -36,13 +38,55 @@ class PayController extends Controller
     public function addPayment(Request $reqp)
     {
         $user = Auth()->user();
-        $pay = Payment::create([
-            'user_id' => $user->id,
-            'taka' => $reqp->taka,
-            'transaction_id' => $reqp->trid,
-            'status' => "Pending",
-        ]);
-        return Redirect::route('payinfo');
+
+        $total_payable = Brid::where('user_id', $user->id)
+            ->where('status', 'Approved')
+            ->sum('rate');
+
+        $paid = Payment::where('user_id', $user->id)
+            ->where('status', 'Approved')
+            ->sum('taka');
+
+        $balance = $total_payable - $paid;
+
+        $payments_status = Payment::where('user_id', $user->id)
+                    ->where('status', "Pending")
+                    ->first();
+
+        $transaction_dup_check = Payment::where('transaction_id', $reqp->trid)->first();
+
+        $transaction_found = Transaction::where('transaction_id', $reqp->trid)->exists();
+
+        $transaction_taka_found = Transaction::where('transaction_id', $reqp->trid)->where('taka', $reqp->taka)->exists();
+
+        if ($payments_status) {
+            return Redirect::back()->with('error', 'পূর্বের ব্যালেন্স পরিশোধ করুন');
+        } elseif ($reqp->taka < $balance) {
+            return Redirect::back()->with('error', 'ব্যালেন্স এর চেয়ে বেশি টাকা এড করতে হবে');
+        } elseif ($transaction_dup_check) {
+            return Redirect::back()->with('error', 'Duplicate Transaction ID Found');
+        } elseif (!$transaction_found) {
+            return Redirect::back()->with('error', 'ভুল Transaction ID (পেমেন্টের পর সার্ভারে Transaction ID আপডেটের জন্য কিছুক্ষণ অপেক্ষা করুন। তারপর Approver এ পেমেন্ট এড করুন।)');
+        } elseif (!$transaction_taka_found) {
+            return Redirect::back()->with('error', 'Transaction ID এর টাকার পরিমাণ মিল নেই');
+        } else {
+            
+            DB::table('transactions')
+            ->where('transaction_id', $reqp->trid)
+            ->update([
+                'status' => "Used",
+                'mobile' => $reqp->mobile,
+            ]);
+
+            $pay = Payment::create([
+                'user_id' => $user->id,
+                'taka' => $reqp->taka,
+                'transaction_id' => $reqp->trid,
+                'mobile' => $reqp->mobile,
+                'status' => "Approved",
+            ]);
+        }
+        return Redirect::route('payinfo')->with('success', 'ব্যালেন্স এড হয়েছে।');
     }
 
     public function paymentShow()
